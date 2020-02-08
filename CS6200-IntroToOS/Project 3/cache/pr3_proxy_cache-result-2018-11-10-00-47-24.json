@@ -1,0 +1,152 @@
+{
+    "tests": [
+        {
+            "output": {
+                "cached_console": "",
+                "passfail": "passed",
+                "cached_returncode": 0
+            },
+            "traceback": "",
+            "description": "Cache Compilation Test"
+        },
+        {
+            "output": {
+                "proxy_returncode": 0,
+                "proxy_console": "",
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Proxy Compilation Test"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "./bvtclient -s localhost -p 8500 -t 2 -w workload-big.txt -r 16 -m udacious.log\n",
+                "passfail": "failed",
+                "client_returncode": null,
+                "proxy_console": "Log Tail:\nND: SENT DATA: 926720, 1024\nSEND: SENT DATA: 927744, 1024\nSEND: SENT DATA: 928768, 1024\nSEND: SENT DATA: 929792, 1024\nSEND: SENT DATA: 930816, 1024\nSEND: SENT DATA: 931840, 1024\nSEND: SENT DATA: 932864, 1024\nSEND: SENT DATA: 933888, 1024\nSEND: SENT DATA: 934912, 1024\nSEND: SENT DATA: 935936, 1024\nSEND: SENT DATA: 936960, 1024\nSEND: SENT DATA: 937984, 1024\nSEND: SENT DATA: 939008, 1024\nSEND: SENT DATA: 940032, 1024\nSEND: SENT DATA: 941056, 1024\nSEND: SENT DATA: 942080, 1024\nSEND: SENT DATA: 943104, 1024\nSEND: SENT DATA: 944128, 1024\nSEND: SENT DATA: 945152, 1024\nSEND: SENT DATA: 946176, 1024\nSEND: SENT DATA: 947200, 1024\nSEND: SENT DATA: 948224, 1024\nSEND: SENT DATA: 949248, 1024\nSEND: SENT DATA: 950272, 1024\nSEND: SENT DATA: 951296, 1024\nSEND: SENT DATA: 952320, 1024\nSEND: SENT DATA: 953344, 1024\nSEND: SENT DATA: 954368, 1024\nSEND: SENT DATA: 955392, 1024\nSEND: SENT DATA: 956416, 1024\nSEND: SENT DATA: 957440, 1024\n\nHANDLE: Entering Handle\nHANDLE: Checking with Cache\nCHECKCACHE: Checking Cache\nCHECKCACHE: Looking for Available Buffers\nCHECKCACHE: Locking Buffer\nCHECKCACHE: Locked Buffer: 1\nCHECKCACHE: Creating and Sending Request\nCHECKCACHE: Sending Request\nCHECKCACHE: Waiting on Reply\nCHECKCACHE: Reply Received\nCHECKCACHE: Exiting\nHANDLE: Sending File\nSEND: Sending\nSEND: SENT DATA: 958464, 1024\nSEND: Sending Header\nSEND 1: Sending File Size: 5241893\nSEND: SENT DATA: 959488, 1024\nSEND: SENT DATA: 960512, 1024\nSEND: SENT DATA: 961536, 1024\nSEND: SENT DATA: 962560, 1024\nSEND: SENT DATA: 963584, 1024\nSEND: SENT DATA: 964608, 1024\nSEND: SENT DATA: 965632, 1024\nSEND: SENT DATA: 966656, 1024\nSEND: SENT DATA: 967680, 1024\nSEND: SENT DATA: 968704, 1024\nSEND: SENT DATA: 969728, 1024\nSEND: SENT DATA: 970752, 1024\nSEND: SENT DATA: 971776, 1024\nSEND: SENT DATA: 972800, 1024\nSEND: SENT DATA: 973824, 1024\nSEND: SENT DATA: 974848, 1024\nSEND: SENT DATA: 975872, 1024\nSEND: SENT DATA: 976896, 1024\nSEND: SENT DATA: 977920, 1024\nSEND: SENT DATA: 978944, 1024\nSEND: SENT DATA: 979968, 1024\nSEND: SENT DATA: 980992, 1024\nSEND: SENT DATA: 982016, 1024\nSEND: SENT DATA: 983040, 1024\nSEND: SENT DATA: 984064, 1024\nSEND: SENT DATA: 985088, 1024\nSEND: SENT DATA: 986112, 1024\nSEND: SENT DATA: 987136, 1024\nSEND: SENT DATA: 988160, 1024\nSEND: SENT DATA: 989184, 1024\nSEND: SENT DATA: 990208, 1024\nSEND: SENT DATA: 991232, 1024\nSEND: SENT DATA: 992256, 1024\nSEND: SENT DATA: 993280, 1024\nSEND: SENT DATA: 994304, 1024\nSEND: SENT DATA: 995328, 1024\nSEND: SENT DATA: 996352, 1024\nSEND: SENT DATA: 997376, 1024\nSEND: SENT DATA: 998400, 1024\nSEND: SENT DATA: 999424, 1024\nSEND: SENT DATA: 1000448, 1024\nSEND: SENT DATA: 1001472, 1024\nSEND: SENT DATA: 1002496, 1024\nSEND: SENT DATA: 1003520, 1024\nSEND: SENT DATA: 1004544, 1024\nSEND: SENT DATA: 1005568, 1024\nSEND: SENT DATA: 1006592, 1024\nSEND: SENT DATA: 1007616, 1024\nSEND: SENT DATA: 1008640, 1024\nSEND: SENT DATA: 1009664, 1024\nSEND: SENT DATA: 1010688, 1024\nSEND: SENT DATA: 1011712, 1024\nSEND: SENT DATA: 1012736, 1024\nSEND: SENT DATA: 1013760, 1024\nSEND: SENT DATA: 1014784, 1024\nSEND: SENT DATA: 1015808, 1024\nSEND: SENT DATA: 1016832, 1024\nSEND: SENT DATA: 1017856, 1024\nSEND: SENT DATA: 1018880, 1024\nSEND: SENT DATA: 1019904, 1024\nSEND: SENT DATA: 1020928, 1024\nSEND: SENT DATA: 1021952, 1024\nSEND: SENT DATA: 1022976, 1024\nSEND: SENT DATA: 1024000, 1024\nSEND: SENT DATA: 1025024, 1024\nSEND: SENT DATA: 1026048, 1024\nSEND: SENT DATA: 1027072, 1024\nSEND: SENT DATA: 1028096, 1024\nSEND: SENT DATA: 1029120, 1024\nSEND: SENT DATA: 1030144, 1024\nSEND: SENT DATA: 1031168, 1024\nSEND: SENT DATA: 1032192, 1024\nSEND: SENT DATA: 1033216, 1024\nSEND: SENT DATA: 1034240, 1024\nSEND: SENT DATA: 1035264, 1024\nSEND: SENT DATA: 1036288, 1024\nSEND: SENT DATA: 1037312, 1024\nSEND: SENT DATA: 1038336, 1024\nSEND: SENT DATA: 1039360, 1024\nSEND: SENT DATA: 1040384, 1024\nSEND: SENT DATA: 1041408, 1024\nSEND: SENT DATA: 1042432, 1024\nSEND: SENT DATA: 1043456, 1024\nSEND: SENT DATA: 1044480, 1024\nSEND: SENT DATA: 1045504, 1024\nSEND: SENT DATA: 1046528, 1024\nSEND: SENT DATA: 1047552, 1024\nSEND 0: Sending Data: 1024\nHANDLE: Leaving Handle\nBytes Transferred 0: 1048576\n\nHANDLE: Entering Handle\nHANDLE: Checking with Cache\nCHECKCACHE: Checking Cache\nCHECKCACHE: Looking for Available Buffers\nCHECKCACHE: Locking Buffer\nCHECKCACHE: Locked Buffer: 0\nCHECKCACHE: Creating and Sending Request\nCHECKCACHE: Sending Request\nCHECKCACHE: Waiting on Reply\nCHECKCACHE: Reply Received\nCHECKCACHE: Exiting\nHANDLE: Sending File\nSEND: Sending\n\nException: The client has not exited within the timeout (10 seconds) and is probably hung.\n",
+                "cached_console": "Log Tail:\nta: 1024, 892928\nHANDLER 0: Sending Data: 1024, 893952\nHANDLER 0: Sending Data: 1024, 894976\nHANDLER 0: Sending Data: 1024, 896000\nHANDLER 0: Sending Data: 1024, 897024\nHANDLER 0: Sending Data: 1024, 898048\nHANDLER 0: Sending Data: 1024, 899072\nHANDLER 0: Sending Data: 1024, 900096\nHANDLER 0: Sending Data: 1024, 901120\nHANDLER 0: Sending Data: 1024, 902144\nHANDLER 0: Sending Data: 1024, 903168\nHANDLER 0: Sending Data: 1024, 904192\nHANDLER 0: Sending Data: 1024, 905216\nHANDLER 0: Sending Data: 1024, 906240\nHANDLER 0: Sending Data: 1024, 907264\nHANDLER 0: Sending Data: 1024, 908288\nHANDLER 0: Sending Data: 1024, 909312\nHANDLER 0: Sending Data: 1024, 910336\nHANDLER 0: Sending Data: 1024, 911360\nHANDLER 0: Sending Data: 1024, 912384\nHANDLER 0: Sending Data: 1024, 913408\nHANDLER 0: Sending Data: 1024, 914432\nHANDLER 0: Sending Data: 1024, 915456\nHANDLER 0: Sending Data: 1024, 916480\nHANDLER 0: Sending Data: 1024, 917504\nHANDLER 0: Sending Data: 1024, 918528\nHANDLER 0: Sending Data: 1024, 919552\nHANDLER 0: Sending Data: 1024, 920576\nHANDLER 0: Sending Data: 1024, 921600\nHANDLER 0: Sending Data: 1024, 922624\nHANDLER 0: Sending Data: 1024, 923648\nHANDLER 0: Sending Data: 1024, 924672\nHANDLER 0: Sending Data: 1024, 925696\nHANDLER 0: Sending Data: 1024, 926720\nHANDLER 0: Sending Data: 1024, 927744\nHANDLER 0: Sending Data: 1024, 928768\nHANDLER 0: Sending Data: 1024, 929792\nHANDLER 0: Sending Data: 1024, 930816\nHANDLER 0: Sending Data: 1024, 931840\nHANDLER 0: Sending Data: 1024, 932864\nHANDLER 0: Sending Data: 1024, 933888\nHANDLER 0: Sending Data: 1024, 934912\nHANDLER 0: Sending Data: 1024, 935936\nHANDLER 0: Sending Data: 1024, 936960\nHANDLER 0: Sending Data: 1024, 937984\nHANDLER 0: Sending Data: 1024, 939008\nHANDLER 0: Sending Data: 1024, 940032\nHANDLER 0: Sending Data: 1024, 941056\nHANDLER 0: Sending Data: 1024, 942080\nHANDLER 0: Sending Data: 1024, 943104\nHANDLER 0: Sending Data: 1024, 944128\nHANDLER 0: Sending Data: 1024, 945152\nHANDLER 0: Sending Data: 1024, 946176\nHANDLER 0: Sending Data: 1024, 947200\nHANDLER 0: Sending Data: 1024, 948224\nHANDLER 0: Sending Data: 1024, 949248\nHANDLER 0: Sending Data: 1024, 950272\nHANDLER 0: Sending Data: 1024, 951296\nHANDLER 0: Sending Data: 1024, 952320\nHANDLER 0: Sending Data: 1024, 953344\nHANDLER 0: Sending Data: 1024, 954368\nHANDLER 0: Sending Data: 1024, 955392\nHANDLER 0: Sending Data: 1024, 956416\nHANDLER 0: Sending Data: 1024, 957440\nHANDLER 0: Sending Data: 1024, 958464\nLISTENER: Request Received: 1\nLISTENER: Request Path: /5241893\nLISTENER: Got Lock\nLISTENER: Queue was Empty\nLISTENER: Request is on the Queue\nHANDLER: Got Request\nHANDLER: Getting Buffer Channel\nHANDLER: Command Send\nHANDLER: File Found\nHANDLER 1: File Size: 5241893\nHANDLER 1: Sending File\nHANDLER 0: Sending Data: 1024, 959488\nHANDLER 0: Sending Data: 1024, 960512\nHANDLER 0: Sending Data: 1024, 961536\nHANDLER 0: Sending Data: 1024, 962560\nHANDLER 0: Sending Data: 1024, 963584\nHANDLER 0: Sending Data: 1024, 964608\nHANDLER 0: Sending Data: 1024, 965632\nHANDLER 0: Sending Data: 1024, 966656\nHANDLER 0: Sending Data: 1024, 967680\nHANDLER 0: Sending Data: 1024, 968704\nHANDLER 0: Sending Data: 1024, 969728\nHANDLER 0: Sending Data: 1024, 970752\nHANDLER 0: Sending Data: 1024, 971776\nHANDLER 0: Sending Data: 1024, 972800\nHANDLER 0: Sending Data: 1024, 973824\nHANDLER 0: Sending Data: 1024, 974848\nHANDLER 0: Sending Data: 1024, 975872\nHANDLER 0: Sending Data: 1024, 976896\nHANDLER 0: Sending Data: 1024, 977920\nHANDLER 0: Sending Data: 1024, 978944\nHANDLER 0: Sending Data: 1024, 979968\nHANDLER 0: Sending Data: 1024, 980992\nHANDLER 0: Sending Data: 1024, 982016\nHANDLER 0: Sending Data: 1024, 983040\nHANDLER 0: Sending Data: 1024, 984064\nHANDLER 0: Sending Data: 1024, 985088\nHANDLER 0: Sending Data: 1024, 986112\nHANDLER 0: Sending Data: 1024, 987136\nHANDLER 0: Sending Data: 1024, 988160\nHANDLER 0: Sending Data: 1024, 989184\nHANDLER 0: Sending Data: 1024, 990208\nHANDLER 0: Sending Data: 1024, 991232\nHANDLER 0: Sending Data: 1024, 992256\nHANDLER 0: Sending Data: 1024, 993280\nHANDLER 0: Sending Data: 1024, 994304\nHANDLER 0: Sending Data: 1024, 995328\nHANDLER 0: Sending Data: 1024, 996352\nHANDLER 0: Sending Data: 1024, 997376\nHANDLER 0: Sending Data: 1024, 998400\nHANDLER 0: Sending Data: 1024, 999424\nHANDLER 0: Sending Data: 1024, 1000448\nHANDLER 0: Sending Data: 1024, 1001472\nHANDLER 0: Sending Data: 1024, 1002496\nHANDLER 0: Sending Data: 1024, 1003520\nLISTENER: Request Received: 0\nLISTENER: Request Path: /5242880\nLISTENER: Got Lock\nLISTENER: Queue was Empty\nLISTENER: Request is on the Queue\n"
+            },
+            "traceback": "",
+            "description": "Test Cache supporting large segments"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": -1,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Multi-threaded Cache test with simultaneous multi-threaded downloads (mixed file sizes)"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": -1,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Cache Test with single threaded downloads"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": 1,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": null,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Cache Test with simultaneous multi-threaded downloads (mixed file sizes)"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": 1,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": null,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Cache Test with simultaneous multi-threaded downloads (small file sizes)"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": null,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Concurrent Download of Same File Test"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": null,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Large File Transfer Test"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": 0,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Test Cache for multi-threading efficacy (or is it faster with more threads?)"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "passed",
+                "client_returncode": 0,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Non-Existent File Transfer Test"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "passed",
+                "client_returncode": 0,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Small File Transfer Test."
+        }
+    ]
+}

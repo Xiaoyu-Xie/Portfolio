@@ -1,0 +1,152 @@
+{
+    "tests": [
+        {
+            "output": {
+                "cached_console": "",
+                "passfail": "passed",
+                "cached_returncode": 0
+            },
+            "traceback": "",
+            "description": "Cache Compilation Test"
+        },
+        {
+            "output": {
+                "proxy_returncode": 0,
+                "proxy_console": "",
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Proxy Compilation Test"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "./bvtclient -s localhost -p 8500 -t 2 -w workload-big.txt -r 16 -m udacious.log\n",
+                "passfail": "failed",
+                "client_returncode": null,
+                "proxy_console": "PROXY: Initializing Mutexes\nPROXY: Initializing Shared Memory and Queues\nPROXY: Now Serving\nCHECKCACHE: Locked Buffer: 0\nCHECKCACHE 0: Sending Request\nCHECKCACHE 0: Waiting on Reply\nCHECKCACHE: Locked Buffer: 1\nCHECKCACHE 1: Sending Request\nCHECKCACHE 1: Waiting on Reply\n\nException: The client has not exited within the timeout (10 seconds) and is probably hung.\n",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Test Cache supporting large segments"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": 23,
+                "client_console": "./bvtclient -s localhost -p 8500 -t 8 -w workload-mixed.txt -r 16 -m udacious.log\n./bvtclient -s localhost -p 8500 -t 8 -w workload-mixed.txt -r 16 -m udacious.log\n./bvtclient -s localhost -p 8500 -t 8 -w workload-mixed.txt -r 16 -m udacious.log\n./bvtclient -s localhost -p 8500 -t 8 -w workload-mixed.txt -r 16 -m udacious.log\n./bvtclient -s localhost -p 8500 -t 8 -w workload-mixed.txt -r 16 -m udacious.log\n",
+                "passfail": "failed",
+                "client_returncode": null,
+                "proxy_console": "Log Tail:\nENT DATA: 14436, 924\nSEND 1: SENT DATA: 15360, 924\nSEND 1: SENT DATA: 16284, 924\nSEND 1: SENT DATA: 17208, 924\nSEND 1: SENT DATA: 18132, 924\nCHECKCACHE: Locked Buffer: 0\nCHECKCACHE: Locked Buffer: 3\nCHECKCACHE 3: Sending Request\nCHECKCACHE 3: Waiting on Reply\nCHECKCACHE: Locked Buffer: 2\nCHECKCACHE 2: Sending Request\nCHECKCACHE 2: Waiting on Reply\nCHECKCACHE 2: Reply Received\nCHECKCACHE 2: File Size: 3\nSEND 2: Sending\nCHECKCACHE: Locked Buffer: 4\nCHECKCACHE 4: Sending Request\nCHECKCACHE 4: Waiting on Reply\nCHECKCACHE 4: Reply Received\nCHECKCACHE 4: File Size: 5\nSEND 4: Sending\nSEND 4: Sending Header\nSEND 4: Sending File Size: 612\nHANDLE: Leaving Handle\nBytes Transferred 4: 4096\nCHECKCACHE 0: Sending Request\nCHECKCACHE 0: Waiting on Reply\nCHECKCACHE: Locked Buffer: 4\nCHECKCACHE 4: Sending Request\nCHECKCACHE 4: Waiting on Reply\nCHECKCACHE 4: Reply Received\nCHECKCACHE 4: File Size: 5\nSEND 4: Sending\nSEND 4: Sending Header\nSEND 4: Sending File Size: 612\nHANDLE: Leaving Handle\nBytes Transferred 4: 4096\n_close:: Connection reset by peer\nSEND 2: Sending Header\nSEND 2: Sending File Size: 612\nHANDLE: Leaving Handle\nBytes Transferred 2: 4096\n_close:: Connection reset by peer\n_close:: Connection reset by peer\nCHECKCACHE: Locked Buffer: 2\nCHECKCACHE 2: Sending Request\nCHECKCACHE 2: Waiting on Reply\nCHECKCACHE 2: Reply Received\nCHECKCACHE 2: File Size: 3\nSEND 2: Sending\nSEND 2: Sending Header\nSEND 2: Sending File Size: 1024\nHANDLE: Leaving Handle\nBytes Transferred 2: 4096\nCHECKCACHE 0: Reply Received\nCHECKCACHE 0: File Size: 1\nSEND 0: Sending\nSEND 0: Sending Header\nCHECKCACHE 3: Reply Received\nCHECKCACHE 3: File Size: 4\nSEND 3: Sending\nSEND 0: Sending File Size: 1024\nSEND 0: SENT DATA: 1024, 1024\nHANDLE: Leaving Handle\nBytes Transferred 0: 1024\nSEND 3: Sending Header\nSEND 3: Sending File Size: 1024\nHANDLE: Leaving Handle\nBytes Transferred 3: 4096\n_close:: Connection reset by peer\n_close:: Connection reset by peer\nCHECKCACHE: Locked Buffer: 0\nCHECKCACHE 0: Sending Request\nCHECKCACHE 0: Waiting on Reply\nCHECKCACHE 0: Reply Received\nCHECKCACHE 0: File Size: 1\nSEND 0: Sending\nSEND 0: Sending Header\nSEND 0: Sending File Size: 1024\nHANDLE: Leaving Handle\nBytes Transferred 0: 4096\n_close:: Connection reset by peer\nCHECKCACHE: Locked Buffer: 0\nCHECKCACHE 0: Sending Request\nCHECKCACHE 0: Waiting on Reply\nCHECKCACHE 0: Reply Received\nCHECKCACHE 0: File Size: 1\nSEND 0: Sending\nSEND 0: Sending Header\nSEND 0: Sending File Size: 1047589\nHANDLE: Leaving Handle\nBytes Transferred 0: 1048576\nCHECKCACHE: Locked Buffer: 0\nCHECKCACHE 0: Sending Request\nCHECKCACHE 0: Waiting on Reply\nCHECKCACHE 0: Reply Received\nCHECKCACHE 0: File Size: 1\nSEND 0: Sending\nSEND 0: Sending Header\nSEND 0: Sending File Size: 1047589\nCHECKCACHE: Locked Buffer: 2\nCHECKCACHE 2: Sending Request\nCHECKCACHE 2: Waiting on Reply\nCHECKCACHE 2: Reply Received\nCHECKCACHE 2: File Size: 3\nSEND 2: Sending\nSEND 2: Sending Header\nSEND 2: Sending File Size: 1047589\n_close:: Connection reset by peer\nHANDLE: Leaving Handle\nBytes Transferred 0: 1048576\nSEND 2: SENT DATA: 1031205, 3109\n_close:: Connection reset by peer\n\nException: The client has not exited within the timeout (30 seconds) and is probably hung.\n\nException: The client has not exited within the timeout (30 seconds) and is probably hung.\n\nException: The client has not exited within the timeout (30 seconds) and is probably hung.\n\nException: The client has not exited within the timeout (30 seconds) and is probably hung.\n\nException: The cache terminated during testing {'client workload file': '/412 412\\n/1047589 1047589\\n/512 512\\n/1048576 1048576\\n/612 612\\n/1049563 1049563\\n/924 924\\n/5241893 5241893\\n/1024 1024\\n/5242880 5242880\\n/1124 1124\\n/5243867 5243867\\n', 'cache': ['./bvtcached', '-c', 'workload-mixed.txt', '-t', '8'], 'proxy': ['./webproxy', '-s', 'localhost:8000', '-t', '8', '-z', '4096', '-n', '8', '-p', '8500'], 'cache workload file': '/412 412\\n/1047589 1047589\\n/512 512\\n/1048576 1048576\\n/612 612\\n/1049563 1049563\\n/924 924\\n/5241893 5241893\\n/1024 1024\\n/5242880 5242880\\n/1124 1124\\n/5243867 5243867\\n', 'client': ['./bvtclient', '-w', 'workload-mixed.txt', '-t', '8', '-r', '16', '-p', '8500']}\n",
+                "cached_console": "Log Tail:\n2: Sending Data: 4096, 729088\nHANDLER 2: Sending Data: 4096, 733184\nHANDLER 2: Sending Data: 4096, 737280\nHANDLER 2: Sending Data: 4096, 741376\nHANDLER 2: Sending Data: 4096, 745472\nHANDLER 2: Sending Data: 4096, 749568\nHANDLER 2: Sending Data: 4096, 753664\nHANDLER 2: Sending Data: 4096, 757760\nHANDLER 2: Sending Data: 4096, 761856\nHANDLER 2: Sending Data: 4096, 765952\nHANDLER 2: Sending Data: 4096, 770048\nHANDLER 2: Sending Data: 4096, 774144\nHANDLER 2: Sending Data: 4096, 778240\nHANDLER 2: Sending Data: 4096, 782336\nHANDLER 2: Sending Data: 4096, 786432\nHANDLER 2: Sending Data: 4096, 790528\nHANDLER 2: Sending Data: 4096, 794624\nHANDLER 2: Sending Data: 4096, 798720\nHANDLER 2: Sending Data: 4096, 802816\nHANDLER 2: Sending Data: 4096, 806912\nHANDLER 2: Sending Data: 4096, 811008\nHANDLER 2: Sending Data: 4096, 815104\nHANDLER 2: Sending Data: 4096, 819200\nHANDLER 2: Sending Data: 4096, 823296\nHANDLER 2: Sending Data: 4096, 827392\nHANDLER 2: Sending Data: 4096, 831488\nHANDLER 2: Sending Data: 4096, 835584\nHANDLER 2: Sending Data: 4096, 839680\nHANDLER 2: Sending Data: 4096, 843776\nHANDLER 2: Sending Data: 4096, 847872\nHANDLER 2: Sending Data: 4096, 851968\nHANDLER 2: Sending Data: 4096, 856064\nHANDLER 2: Sending Data: 4096, 860160\nHANDLER 2: Sending Data: 4096, 864256\nHANDLER 2: Sending Data: 4096, 868352\nHANDLER 2: Sending Data: 4096, 872448\nHANDLER 2: Sending Data: 4096, 876544\nHANDLER 2: Sending Data: 4096, 880640\nHANDLER 2: Sending Data: 4096, 884736\nHANDLER 2: Sending Data: 4096, 888832\nHANDLER 2: Sending Data: 4096, 892928\nHANDLER 2: Sending Data: 4096, 897024\nHANDLER 2: Sending Data: 4096, 901120\nHANDLER 2: Sending Data: 4096, 905216\nHANDLER 2: Sending Data: 4096, 909312\nHANDLER 2: Sending Data: 4096, 913408\nHANDLER 2: Sending Data: 4096, 917504\nHANDLER 2: Sending Data: 4096, 921600\nHANDLER 2: Sending Data: 4096, 925696\nHANDLER 2: Sending Data: 4096, 929792\nHANDLER 2: Sending Data: 4096, 933888\nHANDLER 2: Sending Data: 4096, 937984\nHANDLER 2: Sending Data: 4096, 942080\nHANDLER 2: Sending Data: 4096, 946176\nHANDLER 2: Sending Data: 4096, 950272\nHANDLER 2: Sending Data: 4096, 954368\nHANDLER 2: Sending Data: 4096, 958464\nHANDLER 2: Sending Data: 4096, 962560\nHANDLER 2: Sending Data: 4096, 966656\nHANDLER 2: Sending Data: 4096, 970752\nHANDLER 2: Sending Data: 4096, 974848\nHANDLER 2: Sending Data: 4096, 978944\nHANDLER 2: Sending Data: 4096, 983040\nHANDLER 2: Sending Data: 4096, 987136\nHANDLER 2: Sending Data: 4096, 991232\nHANDLER 2: Sending Data: 4096, 995328\nHANDLER 2: Sending Data: 4096, 999424\nHANDLER 2: Sending Data: 4096, 1003520\nHANDLER 2: Sending Data: 4096, 1007616\nHANDLER 2: Sending Data: 4096, 1011712\nHANDLER 2: Sending Data: 4096, 1015808\nHANDLER 2: Sending Data: 4096, 1019904\nHANDLER 2: Sending Data: 4096, 1024000\nHANDLER 2: Sending Data: 4096, 1028096\nHANDLER 2: Sending Data: 4096, 1032192\nHANDLER 2: Sending Data: 4096, 1036288\nHANDLER 2: Sending Data: 4096, 1040384\nHANDLER 2: Sending Data: 4096, 1044480\nHANDLER 2: Sending Data: 3109, 1047589\nHANDLER 2: Sending Data: 3109, 1047589\nHANDLER 2: File Size Sent: 1047589\nError: underflow in steque_pop.\n\n=================================================================\n==433==ERROR: LeakSanitizer: detected memory leaks\n\nDirect leak of 16 byte(s) in 1 object(s) allocated from:\n    #0 0x480a52 in __interceptor_malloc (/home/vmuser_scaotlpj/workspace/bvtcached+0x480a52)\n    #1 0x4b25ff in steque_push /home/vmuser_scaotlpj/workspace/steque.c:34\n    #2 0x4b207a in listenForRequest /home/vmuser_scaotlpj/workspace/simplecached.c:363\n    #3 0x4b2351 in main /home/vmuser_scaotlpj/workspace/simplecached.c:436\n    #4 0x7fd74208c82f in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2082f)\n\nIndirect leak of 328 byte(s) in 1 object(s) allocated from:\n    #0 0x480a52 in __interceptor_malloc (/home/vmuser_scaotlpj/workspace/bvtcached+0x480a52)\n    #1 0x4b1eba in listenForRequest /home/vmuser_scaotlpj/workspace/simplecached.c:317\n    #2 0x4b2351 in main /home/vmuser_scaotlpj/workspace/simplecached.c:436\n    #3 0x7fd74208c82f in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2082f)\n\nSUMMARY: AddressSanitizer: 344 byte(s) leaked in 2 allocation(s).\n"
+            },
+            "traceback": "",
+            "description": "Multi-threaded Cache test with simultaneous multi-threaded downloads (mixed file sizes)"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": null,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Cache Test with single threaded downloads"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": null,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Cache Test with simultaneous multi-threaded downloads (mixed file sizes)"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": 0,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Cache Test with simultaneous multi-threaded downloads (small file sizes)"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": null,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Concurrent Download of Same File Test"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "passed",
+                "client_returncode": 0,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Large File Transfer Test"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": null,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Test Cache for multi-threading efficacy (or is it faster with more threads?)"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "passed",
+                "client_returncode": 0,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Non-Existent File Transfer Test"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "passed",
+                "client_returncode": 0,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Small File Transfer Test."
+        }
+    ]
+}

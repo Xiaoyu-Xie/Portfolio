@@ -1,0 +1,152 @@
+{
+    "tests": [
+        {
+            "output": {
+                "cached_console": "",
+                "passfail": "passed",
+                "cached_returncode": 0
+            },
+            "traceback": "",
+            "description": "Cache Compilation Test"
+        },
+        {
+            "output": {
+                "proxy_returncode": 0,
+                "proxy_console": "",
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Proxy Compilation Test"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "./bvtclient -s localhost -p 8500 -t 2 -w workload-big.txt -r 16 -m udacious.log\n",
+                "passfail": "failed",
+                "client_returncode": null,
+                "proxy_console": "PROXY: Initializing Mutexes\nPROXY: Initializing Shared Memory and Queues\nPROXY: Now Serving\nCHECKCACHE: Locked Buffer: 0\nCHECKCACHE: Sending Request\nCHECKCACHE: Waiting on Reply\n\nException: The client has not exited within the timeout (10 seconds) and is probably hung.\n",
+                "cached_console": "HANDLER: Queue is empty\nHANDLER: Queue is empty\n"
+            },
+            "traceback": "",
+            "description": "Test Cache supporting large segments"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "./bvtclient -s localhost -p 8500 -t 8 -w workload-mixed.txt -r 16 -m udacious.log\n./bvtclient -s localhost -p 8500 -t 8 -w workload-mixed.txt -r 16 -m udacious.log\n./bvtclient -s localhost -p 8500 -t 8 -w workload-mixed.txt -r 16 -m udacious.log\n./bvtclient -s localhost -p 8500 -t 8 -w workload-mixed.txt -r 16 -m udacious.log\n./bvtclient -s localhost -p 8500 -t 8 -w workload-mixed.txt -r 16 -m udacious.log\n",
+                "passfail": "failed",
+                "client_returncode": null,
+                "proxy_console": "Log Tail:\nATA: 3452928, 4096\nSEND 0: Sending Data: 4096\nSEND: SENT DATA: 3457024, 4096\nSEND 0: Sending Data: 4096\nSEND: SENT DATA: 3461120, 4096\nSEND 0: Sending Data: 4096\nSEND: SENT DATA: 3465216, 4096\nSEND 0: Sending Data: 4096\nSEND: SENT DATA: 3469312, 4096\nSEND 0: Sending Data: 4096\nSEND: SENT DATA: 3473408, 4096\nSEND 0: Sending Data: 4096\nSEND: SENT DATA: 3477504, 4096\nSEND 0: Sending Data: 4096\nSEND: SENT DATA: 3481600, 4096\nSEND 0: Sending Data: 4096\nSEND: SENT DATA: 3485696, 4096\nSEND 0: Sending Data: 4096\nSEND: SENT DATA: 3489792, 4096\nSEND 0: Sending Data: 4096\nSEND: SENT DATA: 3493888, 4096\nSEND 0: Sending Data: 4096\nSEND: SENT DATA: 3497984, 4096\nSEND 0: Sending Data: 4096\nSEND: SENT DATA: 3502080, 4096\nSEND 0: Sending Data: 4096\nSEND: SENT DATA: 3506176, 4096\nSEND 0: Sending Data: 4096\nSEND: SENT DATA: 3510272, 4096\nSEND 0: Sending Data: 4096\nSEND: SENT DATA: 3514368, 4096\nSEND 0: Sending Data: 4096\nSEND: SENT DATA: 3518464, 4096\nSEND 0: Sending Data: 4096\nSEND: SENT DATA: 3522560, 4096\nSEND 0: Sending Data: 4096\nSEND: SENT DATA: 3526656, 4096\nSEND 0: Sending Data: 987\nSEND: SENT DATA: 3527643, 987\nSEND 0: Sending Data: 3109\nSEND: SENT DATA: 3530752, 3109\nSEND 0: Sending Data: 512\nSEND: SENT DATA: 3531264, 512\nSEND 0: Sending Data: 4096\nSEND: SENT DATA: 3535360, 4096\n_close:: Connection reset by peer\n\nException: The contents of at least one of the files was not correct. exec info = {'client workload file': '/412 412\\n/1047589 1047589\\n/512 512\\n/1048576 1048576\\n/612 612\\n/1049563 1049563\\n/924 924\\n/5241893 5241893\\n/1024 1024\\n/5242880 5242880\\n/1124 1124\\n/5243867 5243867\\n', 'cache': ['./bvtcached', '-c', 'workload-mixed.txt', '-t', '8'], 'proxy': ['./webproxy', '-s', 'localhost:8000', '-t', '8', '-z', '4096', '-n', '8', '-p', '8500'], 'cache workload file': '/412 412\\n/1047589 1047589\\n/512 512\\n/1048576 1048576\\n/612 612\\n/1049563 1049563\\n/924 924\\n/5241893 5241893\\n/1024 1024\\n/5242880 5242880\\n/1124 1124\\n/5243867 5243867\\n', 'client': ['./bvtclient', '-w', 'workload-mixed.txt', '-t', '8', '-r', '16', '-p', '8500']}, not_fulfilled = [' /1024', ' /1047589', ' /1047589', ' /1048576', ' /1048576', ' /1049563', ' /1124', ' /412', ' /512', ' /512', ' /5241893', ' /5242880']\n\nException: The client has not exited within the timeout (30 seconds) and is probably hung.\n\nException: The contents of at least one of the files was not correct. exec info = {'client workload file': '/412 412\\n/1047589 1047589\\n/512 512\\n/1048576 1048576\\n/612 612\\n/1049563 1049563\\n/924 924\\n/5241893 5241893\\n/1024 1024\\n/5242880 5242880\\n/1124 1124\\n/5243867 5243867\\n', 'cache': ['./bvtcached', '-c', 'workload-mixed.txt', '-t', '8'], 'proxy': ['./webproxy', '-s', 'localhost:8000', '-t', '8', '-z', '4096', '-n', '8', '-p', '8500'], 'cache workload file': '/412 412\\n/1047589 1047589\\n/512 512\\n/1048576 1048576\\n/612 612\\n/1049563 1049563\\n/924 924\\n/5241893 5241893\\n/1024 1024\\n/5242880 5242880\\n/1124 1124\\n/5243867 5243867\\n', 'client': ['./bvtclient', '-w', 'workload-mixed.txt', '-t', '8', '-r', '16', '-p', '8500']}, not_fulfilled = [' /1024', ' /1047589', ' /1047589', ' /1048576', ' /1048576', ' /1049563', ' /1124', ' /412', ' /512', ' /512', ' /5241893', ' /5242880']\n\nException: The contents of at least one of the files was not correct. exec info = {'client workload file': '/412 412\\n/1047589 1047589\\n/512 512\\n/1048576 1048576\\n/612 612\\n/1049563 1049563\\n/924 924\\n/5241893 5241893\\n/1024 1024\\n/5242880 5242880\\n/1124 1124\\n/5243867 5243867\\n', 'cache': ['./bvtcached', '-c', 'workload-mixed.txt', '-t', '8'], 'proxy': ['./webproxy', '-s', 'localhost:8000', '-t', '8', '-z', '4096', '-n', '8', '-p', '8500'], 'cache workload file': '/412 412\\n/1047589 1047589\\n/512 512\\n/1048576 1048576\\n/612 612\\n/1049563 1049563\\n/924 924\\n/5241893 5241893\\n/1024 1024\\n/5242880 5242880\\n/1124 1124\\n/5243867 5243867\\n', 'client': ['./bvtclient', '-w', 'workload-mixed.txt', '-t', '8', '-r', '16', '-p', '8500']}, not_fulfilled = [' /1024', ' /1047589', ' /1047589', ' /1048576', ' /1048576', ' /1049563', ' /1124', ' /412', ' /512', ' /512', ' /5241893', ' /5242880']\n\nException: The client has not exited within the timeout (30 seconds) and is probably hung.\n",
+                "cached_console": "Log Tail:\nANDLER 0: Sending Data: 4096, 5062656\nHANDLER 0: Bytes Sent: 5062656\nHANDLER 0: Sending Data: 4096, 5066752\nHANDLER 0: Bytes Sent: 5066752\nHANDLER 0: Sending Data: 4096, 5070848\nHANDLER 0: Bytes Sent: 5070848\nHANDLER 0: Sending Data: 4096, 5074944\nHANDLER 0: Bytes Sent: 5074944\nHANDLER 0: Sending Data: 4096, 5079040\nHANDLER 0: Bytes Sent: 5079040\nHANDLER 0: Sending Data: 4096, 5083136\nHANDLER 0: Bytes Sent: 5083136\nHANDLER 0: Sending Data: 4096, 5087232\nHANDLER 0: Bytes Sent: 5087232\nHANDLER 0: Sending Data: 4096, 5091328\nHANDLER 0: Bytes Sent: 5091328\nHANDLER 0: Sending Data: 4096, 5095424\nHANDLER 0: Bytes Sent: 5095424\nHANDLER 0: Sending Data: 4096, 5099520\nHANDLER 0: Bytes Sent: 5099520\nHANDLER 0: Sending Data: 4096, 5103616\nHANDLER 0: Bytes Sent: 5103616\nHANDLER 0: Sending Data: 4096, 5107712\nHANDLER 0: Bytes Sent: 5107712\nHANDLER 0: Sending Data: 4096, 5111808\nHANDLER 0: Bytes Sent: 5111808\nHANDLER 0: Sending Data: 4096, 5115904\nHANDLER 0: Bytes Sent: 5115904\nHANDLER 0: Sending Data: 4096, 5120000\nHANDLER 0: Bytes Sent: 5120000\nHANDLER 0: Sending Data: 4096, 5124096\nHANDLER 0: Bytes Sent: 5124096\nHANDLER 0: Sending Data: 4096, 5128192\nHANDLER 0: Bytes Sent: 5128192\nHANDLER 0: Sending Data: 4096, 5132288\nHANDLER 0: Bytes Sent: 5132288\nHANDLER 0: Sending Data: 4096, 5136384\nHANDLER 0: Bytes Sent: 5136384\nHANDLER 0: Sending Data: 4096, 5140480\nHANDLER 0: Bytes Sent: 5140480\nHANDLER 0: Sending Data: 4096, 5144576\nHANDLER 0: Bytes Sent: 5144576\nHANDLER 0: Sending Data: 4096, 5148672\nHANDLER 0: Bytes Sent: 5148672\nHANDLER 0: Sending Data: 4096, 5152768\nHANDLER 0: Bytes Sent: 5152768\nHANDLER 0: Sending Data: 4096, 5156864\nHANDLER 0: Bytes Sent: 5156864\nHANDLER 0: Sending Data: 4096, 5160960\nHANDLER 0: Bytes Sent: 5160960\nHANDLER 0: Sending Data: 4096, 5165056\nHANDLER 0: Bytes Sent: 5165056\nHANDLER 0: Sending Data: 4096, 5169152\nHANDLER 0: Bytes Sent: 5169152\nHANDLER 0: Sending Data: 4096, 5173248\nHANDLER 0: Bytes Sent: 5173248\nHANDLER 0: Sending Data: 4096, 5177344\nHANDLER 0: Bytes Sent: 5177344\nHANDLER 0: Sending Data: 4096, 5181440\nHANDLER 0: Bytes Sent: 5181440\nHANDLER 0: Sending Data: 4096, 5185536\nHANDLER 0: Bytes Sent: 5185536\nHANDLER 0: Sending Data: 4096, 5189632\nHANDLER 0: Bytes Sent: 5189632\nHANDLER 0: Sending Data: 4096, 5193728\nHANDLER 0: Bytes Sent: 5193728\nHANDLER 0: Sending Data: 4096, 5197824\nHANDLER 0: Bytes Sent: 5197824\nHANDLER 0: Sending Data: 4096, 5201920\nHANDLER 0: Bytes Sent: 5201920\nHANDLER 0: Sending Data: 4096, 5206016\nHANDLER 0: Bytes Sent: 5206016\nHANDLER 0: Sending Data: 4096, 5210112\nHANDLER 0: Bytes Sent: 5210112\nHANDLER 0: Sending Data: 4096, 5214208\nHANDLER 0: Bytes Sent: 5214208\nHANDLER 0: Sending Data: 4096, 5218304\nHANDLER 0: Bytes Sent: 5218304\nHANDLER 0: Sending Data: 4096, 5222400\nHANDLER 0: Bytes Sent: 5222400\nHANDLER 0: Sending Data: 4096, 5226496\nHANDLER 0: Bytes Sent: 5226496\nHANDLER 0: Sending Data: 4096, 5230592\nHANDLER 0: Bytes Sent: 5230592\nHANDLER 0: Sending Data: 4096, 5234688\nHANDLER 0: Bytes Sent: 5234688\nHANDLER 0: Sending Data: 4096, 5238784\nHANDLER 0: Bytes Sent: 5238784\nHANDLER 0: Sending Data: 4096, 5242880\nHANDLER 0: Bytes Sent: 5242880\nHANDLER 0: Sending Data: 987, 5243867\nHANDLER 0: Bytes Sent: 5243867\nHANDLER 0: File Size Sent: 5243867\nHANDLER: Exiting\nLISTENER: Request Received: 2\nHANDLER: Got Request\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nLISTENER: Request Received: 3\nHANDLER: Got Request\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nLISTENER: Request Received: 4\nHANDLER: Got Request\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nLISTENER: Request Received: 5\nHANDLER: Got Request\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER: Queue is empty\n"
+            },
+            "traceback": "",
+            "description": "Multi-threaded Cache test with simultaneous multi-threaded downloads (mixed file sizes)"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": 0,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Cache Test with single threaded downloads"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": 0,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Cache Test with simultaneous multi-threaded downloads (mixed file sizes)"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "passed",
+                "client_returncode": 0,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Cache Test with simultaneous multi-threaded downloads (small file sizes)"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": null,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Concurrent Download of Same File Test"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": 0,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Large File Transfer Test"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": null,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Test Cache for multi-threading efficacy (or is it faster with more threads?)"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "passed",
+                "client_returncode": 0,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Non-Existent File Transfer Test"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "passed",
+                "client_returncode": 0,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Small File Transfer Test."
+        }
+    ]
+}

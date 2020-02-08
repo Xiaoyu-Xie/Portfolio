@@ -1,0 +1,109 @@
+{
+    "tests": [
+        {
+            "output": {
+                "proxy_returncode": null,
+                "server_returncode": 0,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": 0,
+                "proxy_console": "PROXY: Starting Server\nHANDLE: ARG: data\nHANDLE: URL: data/10mb-sample-file-1.txt\nHANDLE: Initializing LibCurl\n\nHANDLE: Content Length: -1\nHANDLE: Response Code: 6\n\n=================================================================\n==90==ERROR: LeakSanitizer: detected memory leaks\n\nDirect leak of 36096 byte(s) in 1 object(s) allocated from:\n    #0 0x7fa27922b79a in __interceptor_calloc (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x9879a)\n    #1 0x7fa278d2373d  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x1c73d)\n    #2 0x1a0f961f348c89ff  (<unknown module>)\n\nIndirect leak of 36096 byte(s) in 1 object(s) allocated from:\n    #0 0x7fa27922b79a in __interceptor_calloc (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x9879a)\n    #1 0x7fa278d2373d  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x1c73d)\n    #2 0x1a0f961f348c89ff  (<unknown module>)\n\nIndirect leak of 920 byte(s) in 1 object(s) allocated from:\n    #0 0x7fa27922b79a in __interceptor_calloc (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x9879a)\n    #1 0x7fa278d5b4ac  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x544ac)\n\nIndirect leak of 416 byte(s) in 13 object(s) allocated from:\n    #0 0x7fa27922b602 in malloc (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x98602)\n    #1 0x7fa278d3a191  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x33191)\n\nIndirect leak of 384 byte(s) in 1 object(s) allocated from:\n    #0 0x7fa27922b79a in __interceptor_calloc (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x9879a)\n    #1 0x7fa278d3b55f  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x3455f)\n\nIndirect leak of 258 byte(s) in 1 object(s) allocated from:\n    #0 0x7fa27922b602 in malloc (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x98602)\n    #1 0x7fa278d296a7  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x226a7)\n\nIndirect leak of 256 byte(s) in 1 object(s) allocated from:\n    #0 0x7fa27922b602 in malloc (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x98602)\n    #1 0x7fa278d2377d  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x1c77d)\n    #2 0x1a0f961f348c89ff  (<unknown module>)\n\nIndirect leak of 256 byte(s) in 1 object(s) allocated from:\n    #0 0x7fa27922b602 in malloc (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x98602)\n    #1 0x7fa278d2377d  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x1c77d)\n    #2 0x1a0f961f348c89ff  (<unknown module>)\n\nIndirect leak of 136 byte(s) in 1 object(s) allocated from:\n    #0 0x7fa27922b79a in __interceptor_calloc (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x9879a)\n    #1 0x7fa278d17366  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x10366)\n\nIndirect leak of 88 byte(s) in 3 object(s) allocated from:\n    #0 0x7fa27922b602 in malloc (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x98602)\n    #1 0x7fa278d3a556  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x33556)\n\nIndirect leak of 70 byte(s) in 2 object(s) allocated from:\n    #0 0x7fa2791f530f in strdup (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x6230f)\n    #1 0x7fa278d23672  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x1c672)\n\nIndirect leak of 64 byte(s) in 1 object(s) allocated from:\n    #0 0x7fa27922b961 in realloc (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x98961)\n    #1 0x7fa278d2d9bb  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x269bb)\n\nIndirect leak of 30 byte(s) in 2 object(s) allocated from:\n    #0 0x7fa2791f530f in strdup (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x6230f)\n    #1 0x7fa278d236a2  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x1c6a2)\n\nIndirect leak of 28 byte(s) in 1 object(s) allocated from:\n    #0 0x7fa2791f530f in strdup (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x6230f)\n    #1 0x7fa278d24e57  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x1de57)\n\nIndirect leak of 10 byte(s) in 2 object(s) allocated from:\n    #0 0x7fa2791f530f in strdup (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x6230f)\n    #1 0x7fa278d23612  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x1c612)\n\nIndirect leak of 10 byte(s) in 2 object(s) allocated from:\n    #0 0x7fa2791f530f in strdup (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x6230f)\n    #1 0x7fa278d235e2  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x1c5e2)\n\nIndirect leak of 10 byte(s) in 2 object(s) allocated from:\n    #0 0x7fa2791f530f in strdup (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x6230f)\n    #1 0x7fa278d23642  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x1c642)\n\nSUMMARY: AddressSanitizer: 75128 byte(s) leaked in 36 allocation(s).\n"
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_brqjpvld/gios.py\", line 273, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 312, in test_ok_with_long_message\n    self.go(num_client_threads, num_proxy_threads, delay, num_requests, workload_file, answer_log)\n  File \"run.py\", line 273, in go\n    self.assertFalse(recv_failed, \"At least one of the requests was not fulfilled or it received an incorrect status. {}\".format(recv_failed_list))\nAssertionError: At least one of the requests was not fulfilled or it received an incorrect status. [' /10mb-sample-file-0.mpg']\n",
+            "description": "Tests that the server properly sends an OK response and a long message."
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "server_returncode": 0,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": 0,
+                "proxy_console": "Log Tail:\nnown module>)\n\nIndirect leak of 60 byte(s) in 12 object(s) allocated from:\n    #0 0x7f12e6b4d30f in strdup (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x6230f)\n    #1 0x7f12e667b612  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x1c612)\n\nIndirect leak of 60 byte(s) in 12 object(s) allocated from:\n    #0 0x7f12e6b4d30f in strdup (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x6230f)\n    #1 0x7f12e667b5e2  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x1c5e2)\n\nIndirect leak of 60 byte(s) in 12 object(s) allocated from:\n    #0 0x7f12e6b4d30f in strdup (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x6230f)\n    #1 0x7f12e667b642  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x1c642)\n\nSUMMARY: AddressSanitizer: 450764 byte(s) leaked in 216 allocation(s).\n"
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_brqjpvld/gios.py\", line 273, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 299, in test_ok_with_short_message\n    self.go(num_client_threads, num_proxy_threads, delay, num_requests, workload_file, answer_log)\n  File \"run.py\", line 273, in go\n    self.assertFalse(recv_failed, \"At least one of the requests was not fulfilled or it received an incorrect status. {}\".format(recv_failed_list))\nAssertionError: At least one of the requests was not fulfilled or it received an incorrect status. [' /1kb-sample-file-0.png', ' /1kb-sample-file-1.html', ' /1kb-sample-file-1.html', ' /1kb-sample-file-2.png', ' /1kb-sample-file-3.jpg', ' /1kb-sample-file-4.png']\n",
+            "description": "Tests that the server properly sends an OK response and a short message."
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "server_returncode": 0,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": 0,
+                "proxy_console": ""
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_brqjpvld/gios.py\", line 273, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 388, in test_proxy_high_stress\n    self.go(num_client_threads, num_proxy_threads, delay, num_requests, workload_file, answer_log)\n  File \"run.py\", line 273, in go\n    self.assertFalse(recv_failed, \"At least one of the requests was not fulfilled or it received an incorrect status. {}\".format(recv_failed_list))\nAssertionError: At least one of the requests was not fulfilled or it received an incorrect status. [' /1kb-sample-file-0.png', ' /1kb-sample-file-0.png', ' /1kb-sample-file-0.png', ' /1kb-sample-file-0.png', ' /1kb-sample-file-0.png', ' /1kb-sample-file-0.png', ' /1kb-sample-file-0.png', ' /1kb-sample-file-0.png', ' /1kb-sample-file-0.png', ' /1kb-sample-file-0.png', ' /1kb-sample-file-0.png', ' /1kb-sample-file-0.png', ' /1kb-sample-file-1.html', ' /1kb-sample-file-1.html', ' /1kb-sample-file-1.html', ' /1kb-sample-file-1.html', ' /1kb-sample-file-1.html', ' /1kb-sample-file-1.html', ' /1kb-sample-file-1.html', ' /1kb-sample-file-1.html', ' /1kb-sample-file-1.html', ' /1kb-sample-file-1.html', ' /1kb-sample-file-1.html', ' /1kb-sample-file-1.html', ' /1kb-sample-file-1.html', ' /1kb-sample-file-2.png', ' /1kb-sample-file-2.png', ' /1kb-sample-file-2.png', ' /1kb-sample-file-2.png', ' /1kb-sample-file-2.png', ' /1kb-sample-file-2.png', ' /1kb-sample-file-2.png', ' /1kb-sample-file-2.png', ' /1kb-sample-file-2.png', ' /1kb-sample-file-2.png', ' /1kb-sample-file-2.png', ' /1kb-sample-file-2.png', ' /1kb-sample-file-2.png', ' /1kb-sample-file-3.jpg', ' /1kb-sample-file-3.jpg', ' /1kb-sample-file-3.jpg', ' /1kb-sample-file-3.jpg', ' /1kb-sample-file-3.jpg', ' /1kb-sample-file-3.jpg', ' /1kb-sample-file-3.jpg', ' /1kb-sample-file-3.jpg', ' /1kb-sample-file-3.jpg', ' /1kb-sample-file-3.jpg', ' /1kb-sample-file-3.jpg', ' /1kb-sample-file-3.jpg', ' /1kb-sample-file-3.jpg', ' /1kb-sample-file-4.png', ' /1kb-sample-file-4.png', ' /1kb-sample-file-4.png', ' /1kb-sample-file-4.png', ' /1kb-sample-file-4.png', ' /1kb-sample-file-4.png', ' /1kb-sample-file-4.png', ' /1kb-sample-file-4.png', ' /1kb-sample-file-4.png', ' /1kb-sample-file-4.png', ' /1kb-sample-file-4.png', ' /1kb-sample-file-4.png', ' /1kb-sample-file-4.png', ' /moranabovejacksonlake.jpg', ' /moranabovejacksonlake.jpg', ' /moranabovejacksonlake.jpg', ' /moranabovejacksonlake.jpg', ' /moranabovejacksonlake.jpg', ' /moranabovejacksonlake.jpg', ' /moranabovejacksonlake.jpg', ' /moranabovejacksonlake.jpg', ' /moranabovejacksonlake.jpg', ' /moranabovejacksonlake.jpg', ' /moranabovejacksonlake.jpg', ' /moranabovejacksonlake.jpg', ' /paraglider.jpg', ' /paraglider.jpg', ' /paraglider.jpg', ' /paraglider.jpg', ' /paraglider.jpg', ' /paraglider.jpg', ' /paraglider.jpg', ' /paraglider.jpg', ' /paraglider.jpg', ' /paraglider.jpg', ' /paraglider.jpg', ' /paraglider.jpg', ' /paraglider.jpg', ' /road.jpg', ' /road.jpg', ' /road.jpg', ' /road.jpg', ' /road.jpg', ' /road.jpg', ' /road.jpg', ' /road.jpg', ' /road.jpg', ' /road.jpg', ' /road.jpg', ' /road.jpg', ' /road.jpg', ' /yellowstone.jpg', ' /yellowstone.jpg', ' /yellowstone.jpg', ' /yellowstone.jpg', ' /yellowstone.jpg', ' /yellowstone.jpg', ' /yellowstone.jpg', ' /yellowstone.jpg', ' /yellowstone.jpg', ' /yellowstone.jpg', ' /yellowstone.jpg', ' /yellowstone.jpg', ' /yellowstone.jpg']\n",
+            "description": "Test with 3:1 ratio client threads to proxy threads"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "server_returncode": 0,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": 0,
+                "proxy_console": ""
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_brqjpvld/gios.py\", line 273, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 362, in test_proxy_multithreaded\n    self.go(num_client_threads, num_proxy_threads, delay, num_requests, workload_file, answer_log)\n  File \"run.py\", line 273, in go\n    self.assertFalse(recv_failed, \"At least one of the requests was not fulfilled or it received an incorrect status. {}\".format(recv_failed_list))\nAssertionError: At least one of the requests was not fulfilled or it received an incorrect status. [' /1kb-sample-file-0.png', ' /1kb-sample-file-1.html', ' /1kb-sample-file-2.png', ' /1kb-sample-file-3.jpg', ' /1kb-sample-file-4.png', ' /moranabovejacksonlake.jpg', ' /paraglider.jpg', ' /road.jpg', ' /yellowstone.jpg']\n",
+            "description": "Test with equal number of client and proxy threads"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "server_returncode": 0,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": 0,
+                "proxy_console": ""
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_brqjpvld/gios.py\", line 273, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 287, in test_proxy_one_at_a_time\n    self.go(num_client_threads, num_proxy_threads, delay, num_requests, workload_file, answer_log)\n  File \"run.py\", line 273, in go\n    self.assertFalse(recv_failed, \"At least one of the requests was not fulfilled or it received an incorrect status. {}\".format(recv_failed_list))\nAssertionError: At least one of the requests was not fulfilled or it received an incorrect status. [' /1kb-sample-file-0.png', ' /1kb-sample-file-1.html', ' /1kb-sample-file-2.png', ' /1kb-sample-file-3.jpg', ' /1kb-sample-file-4.png', ' /moranabovejacksonlake.jpg', ' /paraglider.jpg', ' /road.jpg', ' /yellowstone.jpg']\n",
+            "description": "Tests the proxy behaves as expected when one request is made at a time."
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "server_returncode": 0,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": 0,
+                "proxy_console": ""
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_brqjpvld/gios.py\", line 273, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 350, in test_proxy_simul_clients\n    self.go(num_client_threads, num_proxy_threads, delay, num_requests, workload_file, answer_log)\n  File \"run.py\", line 273, in go\n    self.assertFalse(recv_failed, \"At least one of the requests was not fulfilled or it received an incorrect status. {}\".format(recv_failed_list))\nAssertionError: At least one of the requests was not fulfilled or it received an incorrect status. [' /1kb-sample-file-0.png', ' /1kb-sample-file-1.html', ' /1kb-sample-file-2.png', ' /1kb-sample-file-3.jpg', ' /1kb-sample-file-4.png', ' /moranabovejacksonlake.jpg', ' /paraglider.jpg', ' /road.jpg', ' /yellowstone.jpg']\n",
+            "description": "Tests the proxy behaves as expected when multiple requests are made simultaneously."
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "server_returncode": 0,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": 0,
+                "proxy_console": ""
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_brqjpvld/gios.py\", line 273, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 376, in test_proxy_stress\n    self.go(num_client_threads, num_proxy_threads, delay, num_requests, workload_file, answer_log)\n  File \"run.py\", line 273, in go\n    self.assertFalse(recv_failed, \"At least one of the requests was not fulfilled or it received an incorrect status. {}\".format(recv_failed_list))\nAssertionError: At least one of the requests was not fulfilled or it received an incorrect status. [' /1kb-sample-file-0.png', ' /1kb-sample-file-0.png', ' /1kb-sample-file-0.png', ' /1kb-sample-file-0.png', ' /1kb-sample-file-0.png', ' /1kb-sample-file-0.png', ' /1kb-sample-file-1.html', ' /1kb-sample-file-1.html', ' /1kb-sample-file-1.html', ' /1kb-sample-file-1.html', ' /1kb-sample-file-1.html', ' /1kb-sample-file-1.html', ' /1kb-sample-file-1.html', ' /1kb-sample-file-2.png', ' /1kb-sample-file-2.png', ' /1kb-sample-file-2.png', ' /1kb-sample-file-2.png', ' /1kb-sample-file-2.png', ' /1kb-sample-file-2.png', ' /1kb-sample-file-2.png', ' /1kb-sample-file-3.jpg', ' /1kb-sample-file-3.jpg', ' /1kb-sample-file-3.jpg', ' /1kb-sample-file-3.jpg', ' /1kb-sample-file-3.jpg', ' /1kb-sample-file-3.jpg', ' /1kb-sample-file-3.jpg', ' /1kb-sample-file-4.png', ' /1kb-sample-file-4.png', ' /1kb-sample-file-4.png', ' /1kb-sample-file-4.png', ' /1kb-sample-file-4.png', ' /1kb-sample-file-4.png', ' /1kb-sample-file-4.png', ' /moranabovejacksonlake.jpg', ' /moranabovejacksonlake.jpg', ' /moranabovejacksonlake.jpg', ' /moranabovejacksonlake.jpg', ' /moranabovejacksonlake.jpg', ' /moranabovejacksonlake.jpg', ' /paraglider.jpg', ' /paraglider.jpg', ' /paraglider.jpg', ' /paraglider.jpg', ' /paraglider.jpg', ' /paraglider.jpg', ' /road.jpg', ' /road.jpg', ' /road.jpg', ' /road.jpg', ' /road.jpg', ' /road.jpg', ' /yellowstone.jpg', ' /yellowstone.jpg', ' /yellowstone.jpg', ' /yellowstone.jpg', ' /yellowstone.jpg', ' /yellowstone.jpg']\n",
+            "description": "Test with 2:1 ratio client threads to proxy threads"
+        },
+        {
+            "output": {
+                "proxy_returncode": 0,
+                "proxy_console": "cc -Wall --std=gnu99 -g3 -Wno-format-security -Werror -fsanitize=address -fno-omit-frame-pointer   -c -o webproxy.o webproxy.c\ncc -Wall --std=gnu99 -g3 -Wno-format-security -Werror -fsanitize=address -fno-omit-frame-pointer   -c -o steque.o steque.c\ncc -Wall --std=gnu99 -g3 -Wno-format-security -Werror -fsanitize=address -fno-omit-frame-pointer   -c -o gfserver.o gfserver.c\ncc -Wall --std=gnu99 -g3 -Wno-format-security -Werror -fsanitize=address -fno-omit-frame-pointer   -c -o handle_with_curl.o handle_with_curl.c\ncc -o webproxy -Wall --std=gnu99 -g3 -Wno-format-security -Werror -fsanitize=address -fno-omit-frame-pointer  webproxy.o steque.o gfserver.o handle_with_curl.o -lpthread -L/usr/lib/x86_64-linux-gnu -lcurl\n",
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Proxy Compilation Test"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "server_returncode": 0,
+                "client_console": "",
+                "passfail": "passed",
+                "client_returncode": 0,
+                "proxy_console": ""
+            },
+            "traceback": "",
+            "description": "Tests that the server properly handles requests for non-existent files"
+        }
+    ]
+}

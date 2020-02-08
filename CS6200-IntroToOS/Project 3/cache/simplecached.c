@@ -1,0 +1,397 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <string.h>
+#include <fcntl.h>
+#include <signal.h>
+#include <errno.h>
+#include <getopt.h>
+#include <limits.h>
+#include <sys/signal.h>
+#include <printf.h>
+#include <curl/curl.h>
+
+#include <sys/types.h>
+#include <sys/ipc.h>
+#include <sys/shm.h> 
+#include <sys/sem.h>
+#include <sys/ipc.h> 
+#include <sys/msg.h>
+#include <pthread.h>
+
+#include "gfserver.h"
+#include "proxy-student.h"
+#include "shm_channel.h"
+#include "simplecache.h"
+#include "steque.h"
+
+#if !defined(CACHE_FAILURE)
+#define CACHE_FAILURE (-1)
+#endif // CACHE_FAILURE
+
+#define MAX_CACHE_REQUEST_LEN 12041
+#define BUFSIZE 1024
+
+#define USAGE                                                                 \
+"usage:\n"                                                                    \
+"  simplecached [options]\n"                                                  \
+"options:\n"                                                                  \
+"  -c [cachedir]       Path to static files (Default: ./)\n"                  \
+"  -t [thread_count]   Thread count for work queue (Default: 3, Range: 1-31415)\n"      \
+"  -h                  Show this help message\n"
+
+/* GLOBAL VARIABLES */
+pthread_mutex_t *cache_transfer_mutexes;
+pthread_mutex_t queue_mutex;
+pthread_cond_t  queue_is_empty;
+
+int num_threads;				//Number of threads
+int buffer_counter;
+int request_id;					//Request message queue id
+int *transfer_ids;
+int *command_send_ids;
+int *command_receive_ids;
+key_t request_key;				//Request message queue key
+key_t *transfer_keys;
+key_t *command_send_keys;
+key_t *command_receive_keys;
+transfer_t *last_buffer[2];
+
+int trans_ids_in_use[7];
+
+steque_t requests;
+
+/* OPTIONS DESCRIPTOR ====================================================== */
+static struct option gLongOptions[] = {
+  {"cachedir",           required_argument,      NULL,           'c'},
+  {"nthreads",           required_argument,      NULL,           't'},
+  {"help",               no_argument,            NULL,           'h'},
+  {"hidden",			 no_argument,			 NULL,			 'i'}, /* server side */
+  {NULL,                 0,                      NULL,             0}
+};
+
+void Usage() {
+  fprintf(stdout, "%s", USAGE);
+}
+
+static void _sig_handler(int signo){
+	if (signo == SIGTERM || signo == SIGINT){
+		
+		//Destroy request message queue
+		msgctl(request_id, IPC_RMID, NULL);
+		
+		//Free any remaining requests in the requests steque
+		while(!steque_isempty(&requests))
+		{
+			free((request_t*) steque_pop(&requests));
+		}
+		
+		exit(signo);
+	}
+}
+
+
+/************************************************************
+initializeMutexes
+
+Initializes the mutexes needed for the request buffers in the
+command channel and the transfer buffers in the data channel
+************************************************************/
+void initializeCacheMutexes(){
+	
+	pthread_mutex_init(&queue_mutex, NULL);
+	pthread_cond_init(&queue_is_empty, NULL);
+}
+
+/************************************************************
+initializeSharedMemory
+
+Initializes the mutexes needed for the request buffers in the
+command channel and the transfer buffers in the data channel
+************************************************************/
+void initializeCacheSharedMemory(){
+	
+	//Create file for requeust message queue
+	FILE *fp = fopen(REQUEST_MEMORY_KEY, "ab+");
+	fclose(fp);
+	
+	//Generate keys
+	request_key = ftok(REQUEST_MEMORY_KEY, PROJECT_ID);
+	
+	//Get shared memory IDs and message queues if calling process is the proxy
+	request_id = msgget(request_key, 0666 | IPC_CREAT);
+}
+
+/************************************************************
+requestHandler
+
+Worker thread execution function that gets the file from the
+cache and sends it to the proxy process. If there is no file
+or there is an issue with the retrieval, the proxy is told so
+************************************************************/
+void *requestHandler(){
+/*
+* Declare and initialize variables
+*/
+	request_t *request;
+	transfer_t *transfer_buffer;
+	command_t command_send;
+	command_t command_receive;
+	
+	int file_descriptor;
+	int file_size;
+	int data_size;
+	int bytes_transferred = 0;
+	int command_send_id;
+	int command_receive_id;
+	int segsize;
+	struct stat statbuf;
+
+/*
+* Check queue for requests and get one when available
+*/
+	while(1)
+	{
+		pthread_mutex_lock(&queue_mutex);
+		
+		//Check if the request steque is empty and wait if it is
+		while(steque_isempty(&requests) == 1)
+		{
+			printf("HANDLER: Queue is empty\n");
+			pthread_cond_wait(&queue_is_empty, &queue_mutex);
+		}
+		
+		//Get request
+		request = (request_t *) steque_pop(&requests);
+		
+		pthread_mutex_unlock(&queue_mutex);
+		
+		printf("HANDLER: Got Request\n");
+
+	/*
+	* Get transfer buffer and check for file
+	*/
+		//Get command message queue ids, shared memory id, and segment size
+		transfer_buffer = (transfer_t *) shmat(request->transfer_id, 0, 0);
+		command_send_id = request->command_receive_id;
+		command_receive_id = request->command_send_id;
+		segsize = request->segsize;
+		
+		//Set the message id for command messages
+		command_send.mtype = request->buffer_id + 1;
+		command_receive.mtype = request->buffer_id +1;
+		
+		//Check if file is in the cache
+		file_descriptor = simplecache_get((char *)request->mtext);
+		
+		//File Not Found
+		if(file_descriptor == -1)
+		{
+			printf("HANDLER: File Not Found\n");
+			command_send.status = SM_FILE_NOT_FOUND;
+			command_send.mtype = request->buffer_id + 1;
+			msgsnd(command_send_id, &command_send, sizeof(command_t), 0);
+			msgrcv(command_receive_id, &command_receive, sizeof(command_t), request->buffer_id + 1, 0);
+			
+			printf("HANDLER: Response Code: %d\n", (int) command_receive.mtype);
+			
+			free(request);
+			continue;
+		}
+
+		//File Found
+		fstat(file_descriptor, &statbuf);
+		file_size = (size_t) statbuf.st_size;
+		transfer_buffer->file_size = file_size;
+		
+		command_send.status = SM_READY;
+		
+		//Notify proxy of results
+		printf("HANDLER: Command Send\n");
+		
+		msgsnd(command_send_id, &command_send, sizeof(command_t), 0);
+		msgrcv(command_receive_id, &command_receive, sizeof(command_t), request->buffer_id + 1, 0);
+
+		printf("HANDLER: File Found\n");
+	/*
+	* Send file
+	*/
+		printf("HANDLER %d: File Size: %d\n", request->buffer_id, (int) file_size);
+		
+		bytes_transferred = 0;
+		
+		while(bytes_transferred < file_size)
+		{
+			//If there are not enough bytes left for a full segment, calculate the remaining bytes and send
+			if(bytes_transferred + segsize > file_size)
+			{
+				pread(file_descriptor, transfer_buffer->data, file_size - bytes_transferred, bytes_transferred);
+				data_size = file_size - bytes_transferred;
+				transfer_buffer->data[file_size - bytes_transferred] = '\0';
+			}
+			else
+			{
+				data_size = pread(file_descriptor, transfer_buffer->data, segsize, bytes_transferred);
+				transfer_buffer->data[segsize] = '\0';
+			}
+			
+			bytes_transferred += data_size;
+			
+			if(data_size < segsize)
+			{
+				printf("HANDLER %d: Sending FINAL Data: %d, %d\n", request->buffer_id, data_size, bytes_transferred);
+			}
+			
+			transfer_buffer->data_size = data_size;
+			
+			command_send.status = SM_READY;
+			
+			//Notify Proxy that data is ready
+			msgsnd(command_send_id, &command_send, sizeof(command_t), 0);
+			
+			//Proxy is done with data when message is received
+			msgrcv(command_receive_id, &command_receive, sizeof(command_t), request->buffer_id + 1, 0);
+			
+			transfer_buffer->data[0] = '\0';
+		}
+		
+		printf("HANDLER %d: File Size Sent: %d\n", request->buffer_id, (int) bytes_transferred);
+		
+		//Detach the shared memory segment mapping
+		shmdt(transfer_buffer);
+		
+		//Free the request
+		free(request);
+	}
+}
+
+/************************************************************
+initializeThreads
+
+Initializes the worker threads
+************************************************************/
+void initializeThreads(pthread_t *threads, int nthreads){
+	for(int i = 0; i < nthreads; i++)
+	{
+		pthread_create(&threads[i], NULL, requestHandler, NULL);
+	}
+}
+
+void listenForRequest(){
+	request_t* request;
+	
+	while(1)
+	{
+		request = (request_t *) malloc(sizeof(request_t));
+		
+		//Listen for request
+		msgrcv(request_id, request, sizeof(request_t), 3, 0);
+		
+		printf("LISTENER: Request Received: %d\n", (int) (request->buffer_id));
+
+		
+		if(request->mtype < 0)
+		{
+			free(request);
+			continue;
+		}
+		
+		printf("LISTENER: Request Path: %s\n", request->mtext + '\0');
+		
+		pthread_mutex_lock(&queue_mutex);
+		
+		if(request->buffer_id == 0)
+		{
+			printf("LISTENER: Got Lock\n");
+		}
+		//Add request to queue and signal threads if the queue was empty
+		if(steque_isempty(&requests) == 1)
+		{
+			if(request->buffer_id == 0)
+			{
+				printf("LISTENER: Queue was Empty\n");
+			}
+			steque_push(&requests, (steque_item) request);
+			pthread_mutex_unlock(&queue_mutex);
+			pthread_cond_broadcast(&queue_is_empty);
+		}
+		else
+		{
+			printf("LISTENER: Queue was NOT Empty\n");
+			steque_push(&requests, (steque_item) request);
+			pthread_mutex_unlock(&queue_mutex);
+		}
+	}
+	
+}
+
+int main(int argc, char **argv) {
+	int nthreads = 3;
+	char *cachedir = "locals.txt";
+	char option_char;
+	pthread_t *threads;
+
+	/* disable buffering to stdout */
+	setbuf(stdout, NULL);
+
+	while ((option_char = getopt_long(argc, argv, "ic:ht:", gLongOptions, NULL)) != -1) {
+		switch (option_char) {
+			default:
+				Usage();
+				exit(1);
+			case 'c': //cache directory
+				cachedir = optarg;
+				break;
+			case 'h': // help
+				Usage();
+				exit(0);
+				break;    
+			case 't': // thread-count
+				nthreads = atoi(optarg);
+				break;   
+			case 'i': // server side usage
+				break;
+		}
+	}
+
+	if ((nthreads>31415) || (nthreads < 1)) {
+		fprintf(stderr, "Invalid number of threads\n");
+		exit(__LINE__);
+	}
+
+	if (SIG_ERR == signal(SIGINT, _sig_handler)){
+		fprintf(stderr,"Unable to catch SIGINT...exiting.\n");
+		exit(CACHE_FAILURE);
+	}
+
+	if (SIG_ERR == signal(SIGTERM, _sig_handler)){
+		fprintf(stderr,"Unable to catch SIGTERM...exiting.\n");
+		exit(CACHE_FAILURE);
+	}
+
+	// Initialize cache
+	simplecache_init(cachedir);
+	
+	// Initialize request queue
+	steque_init(&requests);
+
+	num_threads = nthreads;
+/*
+* Create and Initialize
+*/
+	/* Initialize mutexes and condition variables */
+	initializeCacheMutexes();
+	
+	initializeCacheSharedMemory();
+	
+	//Create and initialize Threads
+	threads = malloc(sizeof(pthread_t) * nthreads);
+	initializeThreads(threads, nthreads);
+	
+/*
+*	Listening and Handling
+*/
+	listenForRequest();
+	
+	return 0;
+}

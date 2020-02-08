@@ -1,0 +1,64 @@
+IPC/Proxy Server Project 3
+
+Given:
+	Getfile Server Implementation
+	
+Tasks
+	Mandatory
+		1. Convert Getfile Server into proxy server
+			In - Getfile request
+			Out - http request for server on the internet
+		2. Implement a cache that is used by the proxy
+			Shared Memory
+	Optional
+		1. Write a report
+
+PART 1 - Just the Proxy
+		
+Notes
+	- Convert to proxy
+		1. Replace disc retrieval callback with code that gets the file from the web
+		2. Use libcurl's "easy" C interface
+	- Http Retrieval
+		1. Get filepaths from workload.txt
+		2. Append http://s3.amazonaws.com/content.udacity-data.com to each path 
+			- This is for personal testing only. Do not append this when testing with the autograder.
+			
+Modifiable Files
+	- handle_with_curl.c
+		- Use libcurl library. 404 responses from webservers should cause the proxy to send a GF_FILE_NOT_FOUND to client
+	- webproxy.c
+		- Main proxy server program. Only needs minor modifications.
+		
+Submission
+	Use python submit.py proxy_server
+	
+
+PART 2 - SMART CACHE
+
+Notes
+	- Cache and Proxy are separate programs that communicate
+		- Must have separate channels for commands and transfers
+		- Neither should crash if the other isn't there. They should instead wait and try again.
+	- Do not have to transfer the file if it isn't in the cache
+	- Must handle SIGTERM and SIGINT signals
+		1. Remove existing IPC objects
+			- Shared memory segments
+			- Semaphores
+			- Message queues
+			- Anything Else
+		2. Then Terminate
+	- Some hard-coded information is fine (e.g. port number, shared memory segment name, etc.)
+	
+Modifiable Files
+	- handle_with_cache.c
+		- Uses IPC mechanisms to communicate with Cache process
+	- cache-student.h
+		- header file that can be included in any submitted files
+	- simplecached.c
+		- Main file for the cache daemon. Uses boss-worker to receive requests and send files. Workers handle a single request.
+	- webproxy.c
+		- May need to pre-create a pool of shared memory descriptors, a queue of free shared memory descriptors, associated synchronization variables, etc.
+		
+Submission
+	Use python submit.py proxy_cache

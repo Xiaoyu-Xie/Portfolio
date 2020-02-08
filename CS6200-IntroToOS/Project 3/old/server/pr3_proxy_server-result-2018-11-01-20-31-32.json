@@ -1,0 +1,109 @@
+{
+    "tests": [
+        {
+            "output": {
+                "proxy_returncode": null,
+                "server_returncode": 0,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": null,
+                "proxy_console": "PROXY: Starting Server\nHANDLE: ARG: localhost:8044\nHANDLE: URL: localhost:8044/not-there1\nHANDLE: Initializing LibCurl\nHANDLE: Initializing LibCurl\nHTTP/1.1 404 Not Found\r\nServer: BaseHTTP/0.3 Python/2.7.12\r\nDate: Thu, 01 Nov 2018 20:31:12 GMT\r\nConnection: close\r\nContent-Type: text/html\r\n\r\nHANDLE: Initializing LibCurl\n\nHANDLE: Content Length: -1\nHANDLE: Performing Easy Curl\nWRITE_DATA: Data Size: 190\nHANDLE: Finishing Handle\n\n_close: seems that entire file was not sent.  Filling with zeros.\n\n=================================================================\n==77==ERROR: LeakSanitizer: detected memory leaks\n\nDirect leak of 36096 byte(s) in 1 object(s) allocated from:\n    #0 0x7fa35e98779a in __interceptor_calloc (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x9879a)\n    #1 0x7fa35e47f73d  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x1c73d)\n    #2 0x661206c0eb26f1ff  (<unknown module>)\n\nIndirect leak of 36096 byte(s) in 1 object(s) allocated from:\n    #0 0x7fa35e98779a in __interceptor_calloc (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x9879a)\n    #1 0x7fa35e47f73d  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x1c73d)\n    #2 0x661206c0eb26f1ff  (<unknown module>)\n\nIndirect leak of 920 byte(s) in 1 object(s) allocated from:\n    #0 0x7fa35e98779a in __interceptor_calloc (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x9879a)\n    #1 0x7fa35e4b74ac  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x544ac)\n\nIndirect leak of 512 byte(s) in 2 object(s) allocated from:\n    #0 0x7fa35e987602 in malloc (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x98602)\n    #1 0x7fa35e47f77d  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x1c77d)\n    #2 0x661206c0eb26f1ff  (<unknown module>)\n\nIndirect leak of 416 byte(s) in 13 object(s) allocated from:\n    #0 0x7fa35e987602 in malloc (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x98602)\n    #1 0x7fa35e496191  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x33191)\n\nIndirect leak of 384 byte(s) in 1 object(s) allocated from:\n    #0 0x7fa35e98779a in __interceptor_calloc (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x9879a)\n    #1 0x7fa35e49755f  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x3455f)\n\nIndirect leak of 258 byte(s) in 1 object(s) allocated from:\n    #0 0x7fa35e987602 in malloc (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x98602)\n    #1 0x7fa35e4856a7  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x226a7)\n    #2 0x7fa3565fc93f  (<unknown module>)\n\nIndirect leak of 96 byte(s) in 2 object(s) allocated from:\n    #0 0x7fa35e987602 in malloc (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x98602)\n    #1 0x7fa35e49ff16  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x3cf16)\n\nIndirect leak of 88 byte(s) in 3 object(s) allocated from:\n    #0 0x7fa35e987602 in malloc (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x98602)\n    #1 0x7fa35e496556  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x33556)\n\nIndirect leak of 70 byte(s) in 2 object(s) allocated from:\n    #0 0x7fa35e95130f in strdup (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x6230f)\n    #1 0x7fa35e47f672  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x1c672)\n\nIndirect leak of 64 byte(s) in 1 object(s) allocated from:\n    #0 0x7fa35e987961 in realloc (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x98961)\n    #1 0x7fa35e4899bb  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x269bb)\n\nIndirect leak of 44 byte(s) in 2 object(s) allocated from:\n    #0 0x7fa35e987602 in malloc (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x98602)\n    #1 0x7fa35e49ff64  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x3cf64)\n\nIndirect leak of 30 byte(s) in 2 object(s) allocated from:\n    #0 0x7fa35e95130f in strdup (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x6230f)\n    #1 0x7fa35e47f6a2  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x1c6a2)\n\nIndirect leak of 26 byte(s) in 1 object(s) allocated from:\n    #0 0x7fa35e95130f in strdup (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x6230f)\n    #1 0x7fa35e480e57  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x1de57)\n\nIndirect leak of 24 byte(s) in 1 object(s) allocated from:\n    #0 0x7fa35e98779a in __interceptor_calloc (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x9879a)\n    #1 0x7fa35e46e6e1  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0xb6e1)\n\nIndirect leak of 24 byte(s) in 1 object(s) allocated from:\n    #0 0x7fa35e987602 in malloc (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x98602)\n    #1 0x7fa35e4966d2  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x336d2)\n\nIndirect leak of 24 byte(s) in 1 object(s) allocated from:\n    #0 0x7fa35e987602 in malloc (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x98602)\n    #1 0x7fa35e4961da  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x331da)\n\nIndirect leak of 15 byte(s) in 1 object(s) allocated from:\n    #0 0x7fa35e987602 in malloc (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x98602)\n    #1 0x7fa35e4966e6  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x336e6)\n\nIndirect leak of 10 byte(s) in 2 object(s) allocated from:\n    #0 0x7fa35e95130f in strdup (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x6230f)\n    #1 0x7fa35e47f612  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x1c612)\n\nIndirect leak of 10 byte(s) in 2 object(s) allocated from:\n    #0 0x7fa35e95130f in strdup (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x6230f)\n    #1 0x7fa35e47f642  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x1c642)\n\nIndirect leak of 10 byte(s) in 1 object(s) allocated from:\n    #0 0x7fa35e95130f in strdup (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x6230f)\n    #1 0x7fa35e475c8f  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x12c8f)\n\nIndirect leak of 10 byte(s) in 2 object(s) allocated from:\n    #0 0x7fa35e95130f in strdup (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x6230f)\n    #1 0x7fa35e47f5e2  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x1c5e2)\n\nIndirect leak of 10 byte(s) in 1 object(s) allocated from:\n    #0 0x7fa35e987602 in malloc (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x98602)\n    #1 0x7fa35e473e97  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x10e97)\n\nSUMMARY: AddressSanitizer: 75237 byte(s) leaked in 45 allocation(s).\n"
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_vjkortxh/gios.py\", line 273, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 325, in test_nonexistent_files\n    self.go(num_client_threads, num_proxy_threads, delay, num_requests, workload_file, answer_log)\n  File \"run.py\", line 230, in go\n    self.assertIsNotNone(self.p_client.poll(), \"The client has not exited within the timeout ({} seconds) and is probably hung.\".format(self.client_timeout))\nAssertionError: The client has not exited within the timeout (20 seconds) and is probably hung.\n",
+            "description": "Tests that the server properly handles requests for non-existent files"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "server_returncode": 0,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": null,
+                "proxy_console": "Log Tail:\nr/lib/x86_64-linux-gnu/libcurl.so.4+0x33191)\n\nIndirect leak of 258 byte(s) in 1 object(s) allocated from:\n    #0 0x7f5104b6a602 in malloc (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x98602)\n    #1 0x7f51046686a7  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x226a7)\n    #2 0x7f50faff993f  (<unknown module>)\n\nIndirect leak of 258 byte(s) in 1 object(s) allocated from:\n    #0 0x7f5104b6a602 in malloc (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x98602)\n    #1 0x7f51046686ca  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x226ca)\n    #2 0x7f50faff993f  (<unknown module>)\n\nIndirect leak of 80 byte(s) in 8 object(s) allocated from:\n    #0 0x7f5104b6a602 in malloc (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x98602)\n    #1 0x7f5104656e97  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x10e97)\n\nIndirect leak of 64 byte(s) in 2 object(s) allocated from:\n    #0 0x7f5104b6a602 in malloc (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x98602)\n    #1 0x7f5104679191  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x33191)\n    #2 0x7f50fbffb8ff  (<unknown module>)\n\nIndirect leak of 64 byte(s) in 2 object(s) allocated from:\n    #0 0x7f5104b6a602 in malloc (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x98602)\n    #1 0x7f5104679191  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x33191)\n    #2 0x7f50faff99cf  (<unknown module>)\n\nIndirect leak of 59 byte(s) in 59 object(s) allocated from:\n    #0 0x7f5104b3430f in strdup (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x6230f)\n    #1 0x7f5104669806  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x23806)\n    #2 0x7f51048c638f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1138f)\n\nIndirect leak of 59 byte(s) in 59 object(s) allocated from:\n    #0 0x7f5104b3430f in strdup (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x6230f)\n    #1 0x7f5104669827  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x23827)\n    #2 0x7f51048c638f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1138f)\n\nIndirect leak of 6 byte(s) in 6 object(s) allocated from:\n    #0 0x7f5104b3430f in strdup (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x6230f)\n    #1 0x7f5104669806  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x23806)\n\nIndirect leak of 6 byte(s) in 6 object(s) allocated from:\n    #0 0x7f5104b3430f in strdup (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x6230f)\n    #1 0x7f5104669827  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x23827)\n\nIndirect leak of 1 byte(s) in 1 object(s) allocated from:\n    #0 0x7f5104b3430f in strdup (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x6230f)\n    #1 0x7f5104669806  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x23806)\n    #2 0x7f50faff99cf  (<unknown module>)\n\nIndirect leak of 1 byte(s) in 1 object(s) allocated from:\n    #0 0x7f5104b3430f in strdup (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x6230f)\n    #1 0x7f5104669806  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x23806)\n    #2 0x7f50fbffb8ff  (<unknown module>)\n\nIndirect leak of 1 byte(s) in 1 object(s) allocated from:\n    #0 0x7f5104b3430f in strdup (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x6230f)\n    #1 0x7f5104669827  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x23827)\n    #2 0x7f50fbffb8ff  (<unknown module>)\n\nIndirect leak of 1 byte(s) in 1 object(s) allocated from:\n    #0 0x7f5104b3430f in strdup (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x6230f)\n    #1 0x7f5104669827  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x23827)\n    #2 0x7f50faff99cf  (<unknown module>)\n\nSUMMARY: AddressSanitizer: 5797459 byte(s) leaked in 4313 allocation(s).\n"
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_vjkortxh/gios.py\", line 273, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 388, in test_proxy_high_stress\n    self.go(num_client_threads, num_proxy_threads, delay, num_requests, workload_file, answer_log)\n  File \"run.py\", line 230, in go\n    self.assertIsNotNone(self.p_client.poll(), \"The client has not exited within the timeout ({} seconds) and is probably hung.\".format(self.client_timeout))\nAssertionError: The client has not exited within the timeout (20 seconds) and is probably hung.\n",
+            "description": "Test with 3:1 ratio client threads to proxy threads"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "server_returncode": 0,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": null,
+                "proxy_console": ""
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_vjkortxh/gios.py\", line 273, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 362, in test_proxy_multithreaded\n    self.go(num_client_threads, num_proxy_threads, delay, num_requests, workload_file, answer_log)\n  File \"run.py\", line 230, in go\n    self.assertIsNotNone(self.p_client.poll(), \"The client has not exited within the timeout ({} seconds) and is probably hung.\".format(self.client_timeout))\nAssertionError: The client has not exited within the timeout (20 seconds) and is probably hung.\n",
+            "description": "Test with equal number of client and proxy threads"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "server_returncode": 0,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": null,
+                "proxy_console": ""
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_vjkortxh/gios.py\", line 273, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 287, in test_proxy_one_at_a_time\n    self.go(num_client_threads, num_proxy_threads, delay, num_requests, workload_file, answer_log)\n  File \"run.py\", line 230, in go\n    self.assertIsNotNone(self.p_client.poll(), \"The client has not exited within the timeout ({} seconds) and is probably hung.\".format(self.client_timeout))\nAssertionError: The client has not exited within the timeout (20 seconds) and is probably hung.\n",
+            "description": "Tests the proxy behaves as expected when one request is made at a time."
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "server_returncode": 0,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": null,
+                "proxy_console": ""
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_vjkortxh/gios.py\", line 273, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 350, in test_proxy_simul_clients\n    self.go(num_client_threads, num_proxy_threads, delay, num_requests, workload_file, answer_log)\n  File \"run.py\", line 230, in go\n    self.assertIsNotNone(self.p_client.poll(), \"The client has not exited within the timeout ({} seconds) and is probably hung.\".format(self.client_timeout))\nAssertionError: The client has not exited within the timeout (20 seconds) and is probably hung.\n",
+            "description": "Tests the proxy behaves as expected when multiple requests are made simultaneously."
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "server_returncode": 0,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": null,
+                "proxy_console": ""
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_vjkortxh/gios.py\", line 273, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 376, in test_proxy_stress\n    self.go(num_client_threads, num_proxy_threads, delay, num_requests, workload_file, answer_log)\n  File \"run.py\", line 230, in go\n    self.assertIsNotNone(self.p_client.poll(), \"The client has not exited within the timeout ({} seconds) and is probably hung.\".format(self.client_timeout))\nAssertionError: The client has not exited within the timeout (20 seconds) and is probably hung.\n",
+            "description": "Test with 2:1 ratio client threads to proxy threads"
+        },
+        {
+            "output": {
+                "proxy_returncode": 0,
+                "proxy_console": "cc -Wall --std=gnu99 -g3 -Wno-format-security -Werror -fsanitize=address -fno-omit-frame-pointer   -c -o webproxy.o webproxy.c\ncc -Wall --std=gnu99 -g3 -Wno-format-security -Werror -fsanitize=address -fno-omit-frame-pointer   -c -o steque.o steque.c\ncc -Wall --std=gnu99 -g3 -Wno-format-security -Werror -fsanitize=address -fno-omit-frame-pointer   -c -o gfserver.o gfserver.c\ncc -Wall --std=gnu99 -g3 -Wno-format-security -Werror -fsanitize=address -fno-omit-frame-pointer   -c -o handle_with_curl.o handle_with_curl.c\ncc -o webproxy -Wall --std=gnu99 -g3 -Wno-format-security -Werror -fsanitize=address -fno-omit-frame-pointer  webproxy.o steque.o gfserver.o handle_with_curl.o -lpthread -L/usr/lib/x86_64-linux-gnu -lcurl\n",
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Proxy Compilation Test"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "server_returncode": 0,
+                "client_console": "",
+                "passfail": "passed",
+                "client_returncode": 0,
+                "proxy_console": ""
+            },
+            "traceback": "",
+            "description": "Tests that the server properly sends an OK response and a long message."
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "server_returncode": 0,
+                "client_console": "",
+                "passfail": "passed",
+                "client_returncode": 0,
+                "proxy_console": ""
+            },
+            "traceback": "",
+            "description": "Tests that the server properly sends an OK response and a short message."
+        }
+    ]
+}

@@ -1,0 +1,152 @@
+{
+    "tests": [
+        {
+            "output": {
+                "cached_console": "",
+                "passfail": "passed",
+                "cached_returncode": 0
+            },
+            "traceback": "",
+            "description": "Cache Compilation Test"
+        },
+        {
+            "output": {
+                "proxy_returncode": 0,
+                "proxy_console": "",
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Proxy Compilation Test"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "./bvtclient -s localhost -p 8500 -t 2 -w workload-big.txt -r 16 -m udacious.log\n_send: Connection reset by peer\nFailed to connect.  Trying again....\n",
+                "passfail": "failed",
+                "client_returncode": null,
+                "proxy_console": "PROXY: Initializing Mutexes\nPROXY: Initializing Shared Memory and Queues\nPROXY: Now Serving\nC0: Wait Reply\nC1: Wait Reply\n\nException: The client has not exited within the timeout (10 seconds) and is probably hung.\n",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Test Cache supporting large segments"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "./bvtclient -s localhost -p 8500 -t 8 -w workload-mixed.txt -r 16 -m udacious.log\n./bvtclient -s localhost -p 8500 -t 8 -w workload-mixed.txt -r 16 -m udacious.log\n./bvtclient -s localhost -p 8500 -t 8 -w workload-mixed.txt -r 16 -m udacious.log\n./bvtclient -s localhost -p 8500 -t 8 -w workload-mixed.txt -r 16 -m udacious.log\n./bvtclient -s localhost -p 8500 -t 8 -w workload-mixed.txt -r 16 -m udacious.log\n",
+                "passfail": "failed",
+                "client_returncode": null,
+                "proxy_console": "Log Tail:\n89\nS7: File Size: 1047589\nBT7: 1047589\nC7: Wait Reply\nC7: Received\nS7: File Size: 1048576\nBT7: 1048576\nC7: Wait Reply\nC7: Received\nS7: File Size: 612\nBT7: 612\nPROXY: Initializing Mutexes\nPROXY: Initializing Shared Memory and Queues\nPROXY: Now Serving\nC0: Wait Reply\nC1: Wait Reply\nC2: Wait Reply\nC3: Wait Reply\nC4: Wait Reply\nC5: Wait Reply\nC6: Wait Reply\nC7: Wait Reply\nC0: Received\nS0: File Size: 512\nBT0: 512\nC2: Received\nS2: File Size: 612\nBT2: 612\nC1: Received\nS1: File Size: 1048576\nC0: Wait Reply\nC2: Wait Reply\nC6: Received\nS6: File Size: 5241893\nC7: Received\nC5: Received\nS7: File Size: 924\nBT7: 924\nS5: File Size: 924\nBT5: 924\nC0: Received\nS0: File Size: 5242880\nC5: Wait Reply\nC3: Received\nC4: Received\nS3: File Size: 1047589\nS4: File Size: 1047589\nC2: Received\nS2: File Size: 1047589\nBT3: 1048576\nC5: Received\nS5: File Size: 5243867\nBT4: 1048576\nBT1: 1048576\nC1: Wait Reply\nC1: Received\nS1: File Size: 412\nBT1: 4096\n_close:: Connection reset by peer\nC1: Wait Reply\nC1: Received\nS1: File Size: 512\nBT1: 4096\n_close:: Connection reset by peer\nC1: Wait Reply\nC1: Received\nS1: File Size: 1048576\nBT1: 1048576\nC1: Wait Reply\nC1: Received\nS1: File Size: 1047589\nBT1: 1047589\nC1: Wait Reply\nC1: Received\nS1: File Size: 612\nBT1: 612\nPROXY: Initializing Mutexes\nPROXY: Initializing Shared Memory and Queues\nPROXY: Now Serving\nC0: Wait Reply\nC1: Wait Reply\nC2: Wait Reply\nC3: Wait Reply\nC3: Received\nC4: Wait Reply\nC5: Wait Reply\nC0: Received\nC1: Received\nC2: Received\nS0: File Size: 1048576\nS2: File Size: 1048576\nS1: File Size: 1048576\nC6: Wait Reply\nC5: Received\nS5: File Size: 924\nBT5: 924\nC5: Wait Reply\nC4: Received\nS4: File Size: 1049563\nS3: File Size: 612\nBT3: 612\nC6: Received\nS6: File Size: 5241893\nC3: Wait Reply\nC3: Received\nC5: Received\nS3: File Size: 1024\nBT3: 4096\nS5: File Size: 1024\nBT5: 4096\n_close:: Connection reset by peer\nC3: Wait Reply\nC3: Received\n_close:: Connection reset by peer\nS3: File Size: 1024\nBT3: 4096\n_close:: Connection reset by peer\nC3: Wait Reply\nC3: Received\nS3: File Size: 1124\nBT3: 4096\nC3: Wait Reply\nC3: Received\nS3: File Size: 1124\nBT3: 4096\n_close:: Connection reset by peer\n_close:: Connection reset by peer\nC3: Wait Reply\nC3: Received\nS3: File Size: 1124\nBT3: 4096\nC3: Wait Reply\nC3: Received\nS3: File Size: 1124\nBT3: 4096\n_close:: Connection reset by peer\n_close:: Connection reset by peer\nC3: Wait Reply\nC3: Received\nS3: File Size: 1124\nBT3: 4096\nC3: Wait Reply\nC3: Received\nS3: File Size: 1124\nBT3: 4096\n_close:: Connection reset by peer\n_close:: Connection reset by peer\nBT4: 1052672\nBT2: 1048576\nPROXY: Initializing Mutexes\nPROXY: Initializing Shared Memory and Queues\nPROXY: Now Serving\nC0: Wait Reply\nC1: Wait Reply\nC2: Wait Reply\nC3: Wait Reply\nC3: Received\nS3: File Size: 5243867\nC4: Wait Reply\nC5: Wait Reply\nC6: Wait Reply\nC7: Wait Reply\nC1: Received\nC2: Received\nS2: File Size: 612\nBT2: 612\nC0: Received\nC7: Received\nS1: File Size: 1024\nBT1: 1024\nS7: File Size: 1024\nBT7: 1024\nC6: Received\nC5: Received\nS5: File Size: 1049563\nC4: Received\nS4: File Size: 924\nBT4: 924\nS6: File Size: 924\nBT6: 4096\n_close:: Connection reset by peer\nS0: File Size: 924\nC1: Wait Reply\nC1: Received\nS1: File Size: 924\nBT1: 4096\n_close:: Connection reset by peer\nC1: Wait Reply\nC1: Received\nS1: File Size: 5242880\nC2: Wait Reply\nC4: Wait Reply\nC2: Received\nS2: File Size: 5243867\nC6: Wait Reply\nC6: Received\nS6: File Size: 5243867\nC4: Received\nS4: File Size: 412\nBT4: 4096\n_close:: Connection reset by peer\nC4: Wait Reply\nC4: Received\nS4: File Size: 512\nBT4: 3109\nC4: Wait Reply\nC4: Received\nS4: File Size: 1048576\nBT4: 1048576\nBT5: 1052609\nC4: Wait Reply\nC4: Received\nS4: File Size: 612\nBT4: 4096\n_close:: Connection reset by peer\n_close:: Connection reset by peer\nBT1: 5243492\n_close:: Connection reset by peer\n\nException: The client has not exited within the timeout (30 seconds) and is probably hung.\n\nException: The client has not exited within the timeout (30 seconds) and is probably hung.\n\nException: The client has not exited within the timeout (30 seconds) and is probably hung.\n\nException: The client has not exited within the timeout (30 seconds) and is probably hung.\n\nException: The client has not exited within the timeout (30 seconds) and is probably hung.\n",
+                "cached_console": "Log Tail:\n: 1124\nHANDLER 3: File Size Sent: 1124\nHANDLER: Queue is empty\nHANDLER 4: File Size Sent: 1049563\nHANDLER: Queue is empty\nLISTENER: Request Received: 3\nLISTENER: Request Path: /5243867\nLISTENER: Request Received: 3\nLISTENER: Request Path: /412\nLISTENER: Queue was NOT Empty\nLISTENER: Request Received: 3\nLISTENER: Request Path: /512\nLISTENER: Queue was NOT Empty\nLISTENER: Request Received: 3\nLISTENER: Request Path: /1047589\nLISTENER: Queue was NOT Empty\nLISTENER: Request Received: 3\nLISTENER: Request Path: /1048576\nLISTENER: Queue was NOT Empty\nLISTENER: Request Received: 3\nLISTENER: Request Path: /612\nLISTENER: Queue was NOT Empty\nHANDLER: Got Request\nHANDLER: Got Request\nHANDLER: Got Request\nHANDLER: Got Request\nHANDLER: Got Request\nHANDLER 2: File Size Sent: 1048576\nHANDLER: Got Request\nHANDLER 6: File Size Sent: 5241893\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nLISTENER: Request Received: 0\nLISTENER: Request Path: /512\nLISTENER: Got Lock\nLISTENER: Queue was Empty\nLISTENER: Request Received: 1\nLISTENER: Request Path: /1048576\nLISTENER: Queue was NOT Empty\nLISTENER: Request Received: 2\nLISTENER: Request Path: /612\nLISTENER: Queue was NOT Empty\nLISTENER: Request Received: 3\nLISTENER: Request Path: /1049563\nLISTENER: Queue was NOT Empty\nLISTENER: Request Received: 4\nLISTENER: Request Path: /924\nHANDLER: Got Request\nHANDLER: Got Request\nHANDLER: Got Request\nHANDLER: Got Request\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nLISTENER: Request Received: 5\nLISTENER: Request Path: /5241893\nLISTENER: Queue was NOT Empty\nLISTENER: Request Received: 6\nLISTENER: Request Path: /1047589\nLISTENER: Queue was NOT Empty\nLISTENER: Request Received: 7\nLISTENER: Request Path: /1024\nLISTENER: Queue was NOT Empty\nHANDLER 2: File Size: 612\nHANDLER: Command Send\nHANDLER 2: File Size Sent: 612\nHANDLER: Got Request\nHANDLER: Got Request\nHANDLER: Got Request\nHANDLER 1: File Size: 1048576\nHANDLER 7: File Size: 1024\nHANDLER 7: File Size Sent: 1024\nHANDLER: Got Request\nHANDLER 5: File Size: 5241893\nHANDLER 3: File Size: 1049563\nHANDLER: File Found\nHANDLER 4: File Size: 924\nHANDLER 4: File Size Sent: 924\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER 6: File Size: 1047589\nHANDLER: Queue is empty\nHANDLER 0: File Size: 512\nHANDLER 0: File Size Sent: 512\nHANDLER: Exiting\nHANDLER: Queue is empty\nLISTENER: Request Received: 1\nLISTENER: Request Path: /5242880\nHANDLER: Got Request\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nLISTENER: Request Received: 1\nLISTENER: Request Path: /1124\nHANDLER 1: File Size: 5242880\nLISTENER: Request Received: 2\nLISTENER: Request Path: /5243867\nLISTENER: Queue was NOT Empty\nHANDLER: Got Request\nHANDLER: Got Request\nLISTENER: Request Received: 4\nLISTENER: Request Path: /412\nHANDLER 2: File Size: 5243867\nHANDLER 1: File Size: 1124\nHANDLER 1: File Size Sent: 1124\nHANDLER: Got Request\nLISTENER: Request Received: 6\nLISTENER: Request Path: /1047589\nHANDLER: Got Request\nHANDLER 4: File Size: 412\nHANDLER 4: File Size Sent: 412\nHANDLER: Queue is empty\nHANDLER 6: File Size: 1047589\nLISTENER: Request Received: 4\nLISTENER: Request Path: /512\nHANDLER: Got Request\nHANDLER 6: File Size Sent: 1047589\nHANDLER: Queue is empty\nHANDLER 3: File Size Sent: 1049563\nHANDLER: Queue is empty\nHANDLER 4: File Size: 512\nHANDLER 4: File Size Sent: 512\nHANDLER: Queue is empty\nHANDLER 6: File Size Sent: 1047589\nHANDLER: Queue is empty\nLISTENER: Request Received: 4\nLISTENER: Request Path: /1048576\nHANDLER: Got Request\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER 4: File Size: 1048576\nHANDLER 4: File Size Sent: 1048576\nHANDLER: Queue is empty\nHANDLER 1: File Size Sent: 1048576\nHANDLER: Queue is empty\nLISTENER: Request Received: 4\nLISTENER: Request Path: /612\nHANDLER: Got Request\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER: Queue is empty\nHANDLER 4: File Size: 612\nHANDLER 4: File Size Sent: 612\nHANDLER: Queue is empty\nHANDLER 2: File Size Sent: 5243867\nHANDLER: Queue is empty\n"
+            },
+            "traceback": "",
+            "description": "Multi-threaded Cache test with simultaneous multi-threaded downloads (mixed file sizes)"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "passed",
+                "client_returncode": 0,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Cache Test with single threaded downloads"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "passed",
+                "client_returncode": 0,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Cache Test with simultaneous multi-threaded downloads (mixed file sizes)"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "passed",
+                "client_returncode": 0,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Cache Test with simultaneous multi-threaded downloads (small file sizes)"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": null,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Concurrent Download of Same File Test"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "passed",
+                "client_returncode": 0,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Large File Transfer Test"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": null,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Test Cache for multi-threading efficacy (or is it faster with more threads?)"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "passed",
+                "client_returncode": 0,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Non-Existent File Transfer Test"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "passed",
+                "client_returncode": 0,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Small File Transfer Test."
+        }
+    ]
+}
